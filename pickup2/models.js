@@ -6,7 +6,7 @@ let PlayerSchema = new Schema({
     username: String,
     password: String,
     name: String,
-    age: Number,
+    age: String,
     position: String,
     skill: String,
     imgUrl: {
@@ -40,7 +40,7 @@ let CourtSchema = new Schema({
   location: {
     latitude: Number,
     longitude: Number
-  } 
+  }
 
 })
 

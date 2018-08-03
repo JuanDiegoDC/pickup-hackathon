@@ -23,8 +23,13 @@ class LoginScreen extends React.Component {
   press() {
     this.props.navigation.navigate('LoginFr');
   }
+
   register() {
     this.props.navigation.navigate('Register');
+  }
+
+  ping() {
+
   }
 
   render() {
@@ -37,7 +42,10 @@ class LoginScreen extends React.Component {
         <TouchableOpacity style={[styles.button, styles.buttonBlue]} onPress={ () => {this.register()} }>
           <Text style={styles.buttonLabel}>Tap to Register</Text>
         </TouchableOpacity>
-      </View> //
+        <TouchableOpacity style={[styles.button, styles.buttonBlue]} onPress={ () => this.ping() }>
+          <Text style={styles.buttonLabel}>Ping</Text>
+        </TouchableOpacity>
+      </View>
     )
   }
 }
@@ -47,7 +55,12 @@ class RegisterScreen extends React.Component {
     super();
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      name: '',
+      age: '',
+      skill: '',
+      position: '',
+      imgUrl: ''
     }
   }
 
@@ -61,32 +74,44 @@ class RegisterScreen extends React.Component {
   }
 
   handleSubmit() {
-    fetch('/contact/create', {
-          method: 'POST',
-          credentials: 'same-origin',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            name: this.state.name,
-            phone: this.state.phone,
-            birthday: this.state.birthday
-          })
-        }).then((res)=> {
-          if(res.status === 200) {
-            alert('Contact Saved!')
-            console.log("response", res)
-            this.setState({
-              name: '',
-              phone: '',
-              birthday: ''
-            })
-          } else {
-            console("contact failed to post", res)
-          }
-        }).catch((err) => {
-            console.log("network error posting new contact")
+    console.log("this state", this.state)
+      fetch('/create/user', {
+      method: 'POST',
+      headers: {
+      "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password,
+        name: this.state.name,
+        age: this.state.age,
+        skill: this.state.skill,
+        position: this.state.postion,
+        imgUrl: this.state.imgUrl
+      })
+      })
+    .then((response) => {
+      console.log("resonse from post ", response)
+      return response.json()
+      })
+    .then((responseJson) => {
+      if (responseJson.success) {
+        console.log("Registration Success!", responseJson)
+        this.setState({
+          username: '',
+          password: '',
+          name: '',
+          age: '',
+          position: '',
+          imgUrl: ''
         })
+      } else {
+        alert(responseJson.error)
+      }
+    })
+    .catch((err) => {
+      console.log("Registration Error! (Network)", err)
+    });
   }
 
   render() {
@@ -109,13 +134,45 @@ class RegisterScreen extends React.Component {
             value = {this.state.password}
           />
         </View>
+        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
+          <TextInput
+            style={{height: 40}}
+            placeholder="Enter your name"
+            onChangeText={(text) => this.setState({name: text})}
+            value = {this.state.name}
+          />
+        </View>
+        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
+          <TextInput
+            style={{height: 40}}
+            placeholder="Enter your position"
+            onChangeText={(text) => this.setState({position: text})}
+            value = {this.state.position}
+          />
+        </View>
+        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
+          <TextInput
+            style={{height: 40}}
+            placeholder="Enter your skill level"
+            onChangeText={(text) => this.setState({skill: text})}
+            value = {this.state.skill}
+          />
+        </View>
+        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
+          <TextInput
+            style={{height: 40}}
+            placeholder="Optional Image Url"
+            onChangeText={(text) => this.setState({imgUrl: text})}
+            value = {this.state.imgUrl}
+          />
+        </View>
         <View style={{backgroundColor: '#FFC0CB', borderRadius: 4, borderWidth: 0.5}}>
           <TouchableOpacity onPress={() => this.handleSubmit()}>
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
               <Text style={{color: 'white', height: 40, width: 300, fontSize: 30, textAlign:'center'}}>Submit</Text>
             </View>
         </TouchableOpacity>
-      </View>
+        </View>
       </View>
     )
   }
