@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+const Player = require('./models').Player;
 
 export default class App extends React.Component {
   render() {
