@@ -80,7 +80,7 @@ class LoginScreen extends React.Component {
         <Button title="Tap to Register" onPress={ () => {this.register()} }>
         </Button>
         <Button title="Ping" onPress={ () => this.ping() }>
-        </Button>
+        </Button> 
       </View>
     )
   }
