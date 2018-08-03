@@ -7,12 +7,12 @@ import {
   TextInput,
   ListView,
   Alert,
-  Button,
   AppRegistry,
   Image
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-
+import { Button } from 'react-native-elements';
+import { Icon } from 'react-native-vector-icons/FontAwesome';
 
 class LoginScreen extends React.Component {
   static navigationOptions = (props) => ({
