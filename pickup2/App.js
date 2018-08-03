@@ -7,7 +7,6 @@ import {
   TextInput,
   ListView,
   Alert,
-  Button,
   AppRegistry,
   Image
 } from 'react-native';
@@ -37,7 +36,6 @@ class LoginScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.textBig}>Login to Pickup</Text>
-<<<<<<< HEAD
         <Button icon={<Icon name="home" color="white"/>} />
         <Button
                 title="HOME"
@@ -83,17 +81,6 @@ class LoginScreen extends React.Component {
         </Button>
         <Button title="Ping" onPress={ () => this.ping() }>
         </Button>
-=======
-        <TouchableOpacity onPress={ () => {this.press()} } style={[styles.button, styles.buttonGreen]}>
-          <Text style={styles.buttonLabel}>Tap to Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.buttonBlue]} onPress={ () => {this.register()} }>
-          <Text style={styles.buttonLabel}>Tap to Register</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.buttonBlue]} onPress={ () => this.ping() }>
-          <Text style={styles.buttonLabel}>Ping</Text>
-        </TouchableOpacity>
->>>>>>> b44377f92acfa1679701e999ae66e6e29b5e735e
       </View>
     )
   }
