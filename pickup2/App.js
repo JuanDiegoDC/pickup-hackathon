@@ -75,7 +75,7 @@ class RegisterScreen extends React.Component {
 
   handleSubmit() {
     console.log("this state", this.state)
-      fetch('/create/user', {
+      fetch(`${process.env.NGROK}/create/user`, {
       method: 'POST',
       headers: {
       "Content-Type": "application/json"
