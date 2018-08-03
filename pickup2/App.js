@@ -12,7 +12,14 @@ import {
   Image
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import {
+  Icon,
+  FormLabel,
+  FormInput,
+  FormValidationMessage
+} from 'react-native-elements'
 
+import {LinearGradient} from "react-native-linear-gradient"
 
 class LoginScreen extends React.Component {
   static navigationOptions = (props) => ({
@@ -117,70 +124,85 @@ class RegisterScreen extends React.Component {
 
   render() {
     return (
+
       <View style={styles.container}>
-        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
+        <Image
+          style={{width: 150, height: 150}}
+          // source={{uri: 'http://www.nationalfanthem.com/ShirtPieces/Crying_Michael_Jordan_Meme_Sad_Chicago_Bulls_Fan--ZM--BLK.jpg'}}/>
+            source={require('./mjtransparent.png')}
+         />
+
+        <View style={{height: 50}}>
           <TextInput
-            style={{height: 40}}
-            placeholder="Enter your username"
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
+            placeholder= "Enter your username"
+            placeholderTextColor="white"
             onChangeText={(text) => this.setState({username: text})}
             value={this.state.username}
           />
         </View>
-        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
+        <View style={{height: 50}}>
           <TextInput
-            style={{height: 40}}
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
             placeholder="Enter a password"
+            placeholderTextColor="white"
             secureTextEntry={true}
             onChangeText={(text) => this.setState({password: text})}
             value = {this.state.password}
           />
         </View>
-        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
+        <View style={{height: 50}}>
           <TextInput
-            style={{height: 40}}
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
             placeholder="Enter your name"
+            placeholderTextColor="white"
             onChangeText={(text) => this.setState({name: text})}
             value = {this.state.name}
           />
         </View>
-        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
+        <View style={{height: 50}}>
           <TextInput
-            style={{height: 40}}
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
             placeholder="Enter your position"
+            placeholderTextColor="white"
             onChangeText={(text) => this.setState({position: text})}
             value = {this.state.position}
           />
         </View>
-        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
+        <View style={{height: 50}}>
           <TextInput
-            style={{height: 40}}
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
             placeholder="Enter your age"
+            placeholderTextColor="white"
             onChangeText={(text) => this.setState({age: text})}
             value = {this.state.age}
           />
         </View>
-        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
+        <View style={{height: 50}}>
           <TextInput
-            style={{height: 40}}
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
             placeholder="Enter your skill level"
+            placeholderTextColor="white"
             onChangeText={(text) => this.setState({skill: text})}
             value = {this.state.skill}
           />
         </View>
-        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
+        <View style={{height: 50}}>
           <TextInput
-            style={{height: 40}}
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
             placeholder="Optional Image Url"
+            placeholderTextColor="white"
             onChangeText={(text) => this.setState({imgUrl: text})}
             value = {this.state.imgUrl}
           />
         </View>
-        <View style={{backgroundColor: '#FFC0CB', borderRadius: 4, borderWidth: 0.5}}>
+
+        <View style={{backgroundColor: '#ff9933', borderRadius: 4, borderWidth: 0.5}}>
           <TouchableOpacity onPress={() => this.handleSubmit()}>
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
-              <Text style={{color: 'white', height: 40, width: 300, fontSize: 30, textAlign:'center'}}>Submit</Text>
+              <Text style={{color: 'white', height: 40, width: 300, fontSize: 30, textAlign:'center'}}>Register!</Text>
             </View>
-        </TouchableOpacity>
+          </TouchableOpacity>
         </View>
       </View>
     )
@@ -212,7 +234,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#00264d'
   },
   welcome: {
     fontSize: 20,
