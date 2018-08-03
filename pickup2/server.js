@@ -29,6 +29,10 @@ app.get('/ping', function (req, res) {
  return res.send('pong');
 });
 
+app.post('/create/user', function(req, res) {
+  console.log('hi')
+})
+
 // DO NOT REMOVE THIS LINE :)
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));

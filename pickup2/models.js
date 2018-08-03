@@ -2,7 +2,6 @@ let mongoose  = require('mongoose');
 let Schema = mongoose.Schema;
 
 //contact model
-
 let PlayerSchema = new Schema({
     username: String,
     password: String,
@@ -46,7 +45,6 @@ let CourtSchema = new Schema({
 })
 
 let Court = mongoose.model("Court", CourtSchema)
-
 
 module.exports = {
   Player: Player,
