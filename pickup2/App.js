@@ -3,7 +3,6 @@ import {
   StyleSheet,
   View,
   Text,
-  TouchableOpacity,
   TextInput,
   ListView,
   Alert,
@@ -17,7 +16,7 @@ import { Button } from 'react-native-elements';
 class LoginScreen extends React.Component {
   static navigationOptions = (props) => ({
     title: 'Login',
-    headerRight: <TouchableOpacity onPress={() => {props.navigation.navigate('Register')}}><Text>Register</Text></TouchableOpacity>
+    headerRight: <Button onPress={() => {props.navigation.navigate('Register')}}><Text>Register</Text></Button>
   });
 
   press() {
@@ -35,17 +34,13 @@ class LoginScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button />
         <Text style={styles.textBig}>Login to Pickup</Text>
-        <TouchableOpacity onPress={ () => {this.press()} } style={[styles.button, styles.buttonGreen]}>
-          <Text style={styles.buttonLabel}>Tap to Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.buttonBlue]} onPress={ () => {this.register()} }>
-          <Text style={styles.buttonLabel}>Tap to Register</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.buttonBlue]} onPress={ () => this.ping() }>
-          <Text style={styles.buttonLabel}>Ping</Text>
-        </TouchableOpacity>
+        <Button title="Tap to Login" onPress={ () => {this.press()} }>
+        </Button>
+        <Button title="Tap to Register" onPress={ () => {this.register()} }>
+        </Button>
+        <Button title="Ping" onPress={ () => this.ping() }>
+        </Button>
       </View>
     )
   }
@@ -67,7 +62,7 @@ class RegisterScreen extends React.Component {
 
   static navigationOptions = (props) => ({
     title: "Register",
-    headerLeft: <TouchableOpacity onPress={() => {props.navigation.navigate('Login')}}><Text>Login</Text></TouchableOpacity>
+    headerLeft: <Button onPress={() => {props.navigation.navigate('Login')}}><Text>Login</Text></Button>
   })
 
   login() {
@@ -177,11 +172,11 @@ class RegisterScreen extends React.Component {
           />
         </View>
         <View style={{backgroundColor: '#FFC0CB', borderRadius: 4, borderWidth: 0.5}}>
-          <TouchableOpacity onPress={() => this.handleSubmit()}>
+          <Button onPress={() => this.handleSubmit()}>
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
               <Text style={{color: 'white', height: 40, width: 300, fontSize: 30, textAlign:'center'}}>Submit</Text>
             </View>
-        </TouchableOpacity>
+        </Button>
         </View>
       </View>
     )
