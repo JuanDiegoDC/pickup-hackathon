@@ -38,7 +38,10 @@ let CourtSchema = new Schema({
     type: [],
     ref: "Game"
   },
-  location:
+  location: {
+    latitude: Number,
+    longitude: Number
+  }
 
 })
 
