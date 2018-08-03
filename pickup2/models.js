@@ -40,7 +40,7 @@ let CourtSchema = new Schema({
   location: {
     latitude: Number,
     longitude: Number
-  }
+  } //
 
 })
 
