@@ -4,10 +4,12 @@ let Schema = mongoose.Schema;
 //contact model
 
 let PlayerSchema = new Schema({
+    username: String,
+    password: String,
     name: String,
     age: Number,
     position: String,
-    skill: String,
+    skill: String
 });
 
 let Player =  mongoose.model('Player', PlayerSchema)
@@ -32,7 +34,10 @@ let CourtSchema = new Schema({
     type: [],
     ref: "Game"
   },
-  location: 
+  location: {
+    latitude: Number,
+    longitude: Number
+  }
 
 })
 
