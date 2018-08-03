@@ -86,7 +86,7 @@ class RegisterScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 20}}>
+        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
           <TextInput
             style={{height: 40}}
             placeholder="Enter your username"
@@ -94,7 +94,7 @@ class RegisterScreen extends React.Component {
             value={this.state.username}
           />
         </View>
-        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 20}}>
+        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
           <TextInput
             style={{height: 40}}
             placeholder="Enter a password"
