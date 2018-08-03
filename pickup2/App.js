@@ -3,9 +3,11 @@ import {
   StyleSheet,
   View,
   Text,
+  TouchableOpacity,
   TextInput,
   ListView,
   Alert,
+  Button,
   AppRegistry,
   Image
 } from 'react-native';
@@ -16,7 +18,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 class LoginScreen extends React.Component {
   static navigationOptions = (props) => ({
     title: 'Login',
-    headerRight: <Button onPress={() => {props.navigation.navigate('Register')}}><Text>Register</Text></Button>
+    headerRight: <TouchableOpacity onPress={() => {props.navigation.navigate('Register')}}><Text>Register</Text></TouchableOpacity>
   });
 
   press() {
@@ -35,6 +37,7 @@ class LoginScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.textBig}>Login to Pickup</Text>
+<<<<<<< HEAD
         <Button icon={<Icon name="home" color="white"/>} />
         <Button
                 title="HOME"
@@ -80,6 +83,17 @@ class LoginScreen extends React.Component {
         </Button>
         <Button title="Ping" onPress={ () => this.ping() }>
         </Button>
+=======
+        <TouchableOpacity onPress={ () => {this.press()} } style={[styles.button, styles.buttonGreen]}>
+          <Text style={styles.buttonLabel}>Tap to Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.button, styles.buttonBlue]} onPress={ () => {this.register()} }>
+          <Text style={styles.buttonLabel}>Tap to Register</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.button, styles.buttonBlue]} onPress={ () => this.ping() }>
+          <Text style={styles.buttonLabel}>Ping</Text>
+        </TouchableOpacity>
+>>>>>>> b44377f92acfa1679701e999ae66e6e29b5e735e
       </View>
     )
   }
@@ -101,7 +115,7 @@ class RegisterScreen extends React.Component {
 
   static navigationOptions = (props) => ({
     title: "Register",
-    headerLeft: <Button onPress={() => {props.navigation.navigate('Login')}}><Text>Login</Text></Button>
+    headerLeft: <TouchableOpacity onPress={() => {props.navigation.navigate('Login')}}><Text>Login</Text></TouchableOpacity>
   })
 
   login() {
@@ -210,16 +224,18 @@ class RegisterScreen extends React.Component {
           />
         </View>
         <View style={{backgroundColor: '#FFC0CB', borderRadius: 4, borderWidth: 0.5}}>
-          <Button onPress={() => this.handleSubmit()}>
+          <TouchableOpacity onPress={() => this.handleSubmit()}>
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
               <Text style={{color: 'white', height: 40, width: 300, fontSize: 30, textAlign:'center'}}>Submit</Text>
             </View>
-        </Button>
+        </TouchableOpacity>
         </View>
       </View>
     )
   }
 }
+
+
 
 export default StackNavigator({
   Login: {
@@ -229,16 +245,6 @@ export default StackNavigator({
     screen: RegisterScreen
   }
 }, {initialRouteName: 'Login'});
-
-// export default class App extends React.Component {
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <Text>Open up App.js to start working on your app!</Text>
-//       </View>
-//     );
-//   }
-// }
 
 
 const styles = StyleSheet.create({
