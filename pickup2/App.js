@@ -72,7 +72,6 @@ class RegisterScreen extends React.Component {
   login() {
     this.props.navigation.navigate('Login');
   }
-  //`${process.env.NGROK}/create/user`
   handleSubmit() {
     console.log("this state", this.state)
       fetch('http://e9aa7b6a.ngrok.io/create/user', {
@@ -103,7 +102,7 @@ class RegisterScreen extends React.Component {
           name: '',
           age: '',
           position: '',
-          skill: ''
+          skill: '',
           imgUrl: ''
         })
       } else {
