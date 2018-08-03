@@ -7,7 +7,9 @@ import {
   TextInput,
   ListView,
   Alert,
-  Button
+  Button,
+  AppRegistry,
+  Image
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
