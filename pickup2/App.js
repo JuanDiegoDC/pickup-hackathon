@@ -103,7 +103,7 @@ class RegisterScreen extends React.Component {
           name: '',
           age: '',
           position: '',
-          skill: ''
+          skill: '',
           imgUrl: ''
         })
       } else {
