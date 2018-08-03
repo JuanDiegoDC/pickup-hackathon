@@ -43,8 +43,8 @@ app.post('/create/user', function(req, res) {
       imgUrl: req.body.imgUrl
     })
     newPlayer.save()
-      .then((saved) => {  
-        console.log("Player saved in databse", saved)
+      .then((saved) => {
+        console.log("Player saved in database", saved)
       })
       .catch((err) => {
         console.log("failed to save player")

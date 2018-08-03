@@ -72,10 +72,10 @@ class RegisterScreen extends React.Component {
   login() {
     this.props.navigation.navigate('Login');
   }
-
+  //`${process.env.NGROK}/create/user`
   handleSubmit() {
     console.log("this state", this.state)
-      fetch(`${process.env.NGROK}/create/user`, {
+      fetch('http://e9aa7b6a.ngrok.io/create/user', {
       method: 'POST',
       headers: {
       "Content-Type": "application/json"
@@ -148,6 +148,14 @@ class RegisterScreen extends React.Component {
             placeholder="Enter your position"
             onChangeText={(text) => this.setState({position: text})}
             value = {this.state.position}
+          />
+        </View>
+        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
+          <TextInput
+            style={{height: 40}}
+            placeholder="Enter your age"
+            onChangeText={(text) => this.setState({age: text})}
+            value = {this.state.age}
           />
         </View>
         <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
