@@ -8,11 +8,14 @@ import {
   ListView,
   Alert,
   AppRegistry,
-  Image
+  Image,
+  Button
+
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import { Button } from 'react-native-elements';
-import { Icon } from 'react-native-vector-icons/FontAwesome';
+// import { Button } from 'react-native-elements';
+// import { Icon } from 'react-native-vector-icons/FontAwesome';
+import { MapView } from 'expo';
 
 class LoginScreen extends React.Component {
   static navigationOptions = (props) => ({
@@ -21,7 +24,7 @@ class LoginScreen extends React.Component {
   });
 
   press() {
-    this.props.navigation.navigate('LoginFr');
+    this.props.navigation.navigate('LoginScreen');
   }
 
   register() {
@@ -35,52 +38,13 @@ class LoginScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.textBig}>Login to Pickup</Text>
-        <Button icon={<Icon name="home" color="white"/>} />
-        <Button
-                title="HOME"
-                icon={
-                  <Icon
-                    name='home'
-                    size={15}
-                    color='white'
-                  />
-                }
-                iconContainerStyle={{marginRight: 10}}
-                titleStyle={{fontWeight: '700'}}
-                buttonStyle={{backgroundColor: 'rgba(90, 154, 230, 1)', borderColor: 'transparent', borderWidth: 0, borderRadius: 30}}
-                containerStyle={{width: 130}}
-              />
-        <Button
-              title="Add to Cart"
-              titleStyle={{fontWeight: 'bold', fontSize: 18}}
-              linearGradientProps={{
-                colors: ['#FF9800', '#F44336'],
-                start: [1, 0],
-                end: [0.2, 0],
-              }}
-              buttonStyle={{borderWidth: 0, borderColor: 'transparent', borderRadius: 20}}
-              containerStyle={{marginVertical: 10, height: 40, width: 200}}
-              icon={
-                <Icon
-                  iconRight
-                  name="rocket"
-                  size={15}
-                />
-              }
-              iconContainerStyle={{marginRight: 10}}
-        />
-        <Button
-          title="Tap to Login"
-          buttonStyle={{backgroundColor: 'rgba(111, 202, 186, 1)', borderRadius: 5}}
-          containerStyle={{marginVertical: 20, height: 50, width: 230}}
-          onPress={ () => {this.press()}}
-          underlayColor="transparent"
-        />
-        <Button title="Tap to Register" onPress={ () => {this.register()} }>
-        </Button>
-        <Button title="Ping" onPress={ () => this.ping() }>
-        </Button>
+        <Text style={styles.textBig}>Login to Pickup!</Text>
+        <TouchableOpacity onPress={ () => {this.press()} } style={[styles.button, styles.buttonGreen]}>
+          <Text style={styles.buttonLabel}>Tap to Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.button, styles.buttonBlue]} onPress={ () => {this.register()} }>
+          <Text style={styles.buttonLabel}>Tap to Register</Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -106,8 +70,9 @@ class RegisterScreen extends React.Component {
   })
 
   login() {
-    this.props.navigation.navigate('Login');
+    this.props.navigation.navigate('LoginScreen');
   }
+
   handleSubmit() {
     console.log("this state", this.state)
       fetch('http://e9aa7b6a.ngrok.io/create/user', {
@@ -148,6 +113,7 @@ class RegisterScreen extends React.Component {
     .catch((err) => {
       console.log("Registration Error! (Network)", err)
     });
+    this.login()
   }
 
   render() {
@@ -222,6 +188,136 @@ class RegisterScreen extends React.Component {
   }
 }
 
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: '',
+      errMsg: ''
+    }
+  }
+
+  redirect() {
+    this.props.navigation.navigate('Map');
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+      fetch('http://e9aa7b6a.ngrok.io/login', {
+      method: 'POST',
+      headers: {
+      "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password,
+      })
+      })
+    .then((response) => {
+      console.log("resonse from post ", response)
+      return response.json()
+      })
+    .then((responseJson) => {
+      if (responseJson.success) {
+        console.log("Login Success!", responseJson)
+        this.setState({
+          username: '',
+          password: '',
+        })
+      } else {
+        alert(responseJson.error)
+      }
+    })
+    .catch((err) => {
+      console.log("Login Error! (Network)", err)
+    });
+    this.redirect()
+  }
+
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
+          <TextInput
+            style={{height: 40}}
+            placeholder="Username"
+            onChangeText={(text) => this.setState({username: text})}
+            value={this.state.username}
+          />
+        </View>
+        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
+          <TextInput
+            style={{height: 40}}
+            placeholder="Password"
+            secureTextEntry={true}
+            onChangeText={(text) => this.setState({password: text})}
+            value = {this.state.password}
+          />
+        </View>
+        <View style={{backgroundColor: '#FFC0CB', borderRadius: 4, borderWidth: 0.5}}>
+          <TouchableOpacity onPress={(e) => this.handleSubmit(e)}>
+            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+              <Text style={{color: 'white', height: 40, width: 300, fontSize: 30, textAlign:'center'}}>Login</Text>
+            </View>
+        </TouchableOpacity>
+      </View>
+      </View>
+    )
+  }
+}
+
+class MapScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lat: 37.802981,
+      long: -122.412146,
+      latDelta: .1,
+      longDelta: .05
+    }
+  }
+
+  render() {
+    return(
+      <View style={{
+          flex: 1
+        }}>
+        <View style={{flex: 1, flexDirection: 'row'}}>
+
+          <TouchableOpacity
+            style={{flex: 1,
+              borderWidth: 1,
+              alignItems: 'center',
+              justifyContent: 'center'}}
+              onPress={() => this.handleInstanbul()}>
+            <Text>Istanbul</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{flex: 1,
+              borderWidth: 1,
+              alignItems: 'center',
+              justifyContent: 'center'}}
+              onPress={() => this.handleCurrent()}>
+            <Text>Here</Text>
+          </TouchableOpacity>
+
+        </View>
+        <MapView style={{flex: 7}}
+        region={{
+          latitude: this.state.lat,
+          longitude: this.state.long,
+          latitudeDelta: this.state.latDelta,
+          longitudeDelta: this.state.longDelta
+        }}
+        />
+      </View>
+    )
+  }
+
+}
 
 
 export default StackNavigator({
@@ -230,6 +326,12 @@ export default StackNavigator({
   },
   Register: {
     screen: RegisterScreen
+  },
+  Map: {
+    screen: MapScreen
+  },
+  LoginScreen: {
+    screen: Login
   }
 }, {initialRouteName: 'Login'});
 

@@ -55,6 +55,14 @@ app.post('/create/user', function(req, res) {
   res.json({"success": true})
 });
 
+app.post('/login', function(req, res) {
+  // Player.findOne({username: req.body.username})
+  //   .then((user) => {
+  //
+  //   })
+  res.json({success: true})
+});
+
 // DO NOT REMOVE THIS LINE :)
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
