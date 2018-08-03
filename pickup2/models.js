@@ -2,7 +2,6 @@ let mongoose  = require('mongoose');
 let Schema = mongoose.Schema;
 
 //contact model
-
 let PlayerSchema = new Schema({
     name: String,
     age: Number,
@@ -32,12 +31,11 @@ let CourtSchema = new Schema({
     type: [],
     ref: "Game"
   },
-  location: 
+  location:
 
 })
 
 let Court = mongoose.model("Court", CourtSchema)
-
 
 module.exports = {
   Player: Player,
