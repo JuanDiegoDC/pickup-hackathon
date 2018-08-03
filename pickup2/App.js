@@ -37,7 +37,7 @@ class LoginScreen extends React.Component {
         <TouchableOpacity style={[styles.button, styles.buttonBlue]} onPress={ () => {this.register()} }>
           <Text style={styles.buttonLabel}>Tap to Register</Text>
         </TouchableOpacity>
-      </View>
+      </View> //
     )
   }
 }
