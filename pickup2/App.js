@@ -7,12 +7,12 @@ import {
   TextInput,
   ListView,
   Alert,
+  Button,
   AppRegistry,
   Image
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome'
+
 
 class LoginScreen extends React.Component {
   static navigationOptions = (props) => ({
@@ -36,51 +36,15 @@ class LoginScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.textBig}>Login to Pickup</Text>
-        <Button icon={<Icon name="home" color="white"/>} />
-        <Button
-                title="HOME"
-                icon={
-                  <Icon
-                    name='home'
-                    size={15}
-                    color='white'
-                  />
-                }
-                iconContainerStyle={{marginRight: 10}}
-                titleStyle={{fontWeight: '700'}}
-                buttonStyle={{backgroundColor: 'rgba(90, 154, 230, 1)', borderColor: 'transparent', borderWidth: 0, borderRadius: 30}}
-                containerStyle={{width: 130}}
-              />
-        <Button
-              title="Add to Cart"
-              titleStyle={{fontWeight: 'bold', fontSize: 18}}
-              linearGradientProps={{
-                colors: ['#FF9800', '#F44336'],
-                start: [1, 0],
-                end: [0.2, 0],
-              }}
-              buttonStyle={{borderWidth: 0, borderColor: 'transparent', borderRadius: 20}}
-              containerStyle={{marginVertical: 10, height: 40, width: 200}}
-              icon={
-                <Icon
-                  iconRight
-                  name="rocket"
-                  size={15}
-                />
-              }
-              iconContainerStyle={{marginRight: 10}}
-        />
-        <Button
-          title="Tap to Login"
-          buttonStyle={{backgroundColor: 'rgba(111, 202, 186, 1)', borderRadius: 5}}
-          containerStyle={{marginVertical: 20, height: 50, width: 230}}
-          onPress={ () => {this.press()}}
-          underlayColor="transparent"
-        />
-        <Button title="Tap to Register" onPress={ () => {this.register()} }>
-        </Button>
-        <Button title="Ping" onPress={ () => this.ping() }>
-        </Button>
+        <TouchableOpacity onPress={ () => {this.press()} } style={[styles.button, styles.buttonGreen]}>
+          <Text style={styles.buttonLabel}>Tap to Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.button, styles.buttonBlue]} onPress={ () => {this.register()} }>
+          <Text style={styles.buttonLabel}>Tap to Register</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.button, styles.buttonBlue]} onPress={ () => this.ping() }>
+          <Text style={styles.buttonLabel}>Ping</Text>
+        </TouchableOpacity>
       </View>
     )
   }
