@@ -61,28 +61,32 @@ class RegisterScreen extends React.Component {
   }
 
   handleSubmit() {
-    // fetch('https://hohoho-backend.herokuapp.com/register', {
-    //   method: 'POST',
-    //   headers: {
-    //   "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify({
-    //   username: this.state.username,
-    //   password: this.state.password,
-    //   })
-    //   })
-    // .then((response) => response.json())
-    // .then((responseJson) => {
-    //   if (responseJson.success) {
-    //     console.log("Registration Success!", responseJson)
-    //     this.login()
-    //   } else {
-    //     alert(responseJson.error)
-    //   }
-    // })
-    // .catch((err) => {
-    //   console.log("Registration Error!", err)
-    // });
+    fetch('/contact/create', {
+          method: 'POST',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: this.state.name,
+            phone: this.state.phone,
+            birthday: this.state.birthday
+          })
+        }).then((res)=> {
+          if(res.status === 200) {
+            alert('Contact Saved!')
+            console.log("response", res)
+            this.setState({
+              name: '',
+              phone: '',
+              birthday: ''
+            })
+          } else {
+            console("contact failed to post", res)
+          }
+        }).catch((err) => {
+            console.log("network error posting new contact")
+        })
   }
 
   render() {
