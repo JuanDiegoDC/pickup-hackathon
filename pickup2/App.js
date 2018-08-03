@@ -7,11 +7,11 @@ import {
   TextInput,
   ListView,
   Alert,
-  Button,
   AppRegistry,
   Image
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import { Button } from 'react-native-elements';
 
 
 class LoginScreen extends React.Component {
@@ -35,6 +35,7 @@ class LoginScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Button />
         <Text style={styles.textBig}>Login to Pickup</Text>
         <TouchableOpacity onPress={ () => {this.press()} } style={[styles.button, styles.buttonGreen]}>
           <Text style={styles.buttonLabel}>Tap to Login</Text>
