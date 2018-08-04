@@ -402,7 +402,9 @@ class MapScreen extends React.Component {
         }}>
         <MapView.Marker
           coordinate = {{latitude: 37.779, longitude: -122.4058}}
-          title = {"Gene Friend Recreation Center"}>
+          title = {"Gene Friend Recreation Center"}
+          onSelect={(e)=>this.displayCreateGame(e)}
+          >
             <Image
               style={{width: 50, height: 50}}
               source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
@@ -411,7 +413,9 @@ class MapScreen extends React.Component {
         </MapView.Marker>
         <MapView.Marker
           coordinate = {{latitude: 37.777, longitude: -122.406}}
-          title = {"Victoria Manalo Draves Park"}>
+          title = {"Victoria Manalo Draves Park"}
+          onSelect={(e)=>this.displayCreateGame(e)}
+          >
           <Image
             style={{width: 50, height: 50}}
             source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
@@ -425,15 +429,11 @@ class MapScreen extends React.Component {
             style={{width: 50, height: 50}}
             source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
           />
-          {/* <MapView.Callout tooltip={true} style={{width: 10}}>
-            <TouchableOpacity  underlayColor='#dddddd'>
-
-            </TouchableOpacity>
-          </MapView.Callout> */}
         </MapView.Marker>
         <MapView.Marker
           coordinate = {{latitude: 37.773, longitude: -122.3936}}
           title = {"Mission Creek Park Pavilion"}
+          onSelect={(e)=>this.displayCreateGame(e)}
           >
           <Image
             style={{width: 50, height: 50}}
