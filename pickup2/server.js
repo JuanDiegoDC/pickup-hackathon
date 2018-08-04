@@ -41,11 +41,13 @@ app.post('/create/user', function(req, res) {
       age: req.body.age,
       position: req.body.position,
       skill: req.body.skill,
-      imgUrl: req.body.imgUrl
+      imgUrl: req.body.imgUrl,
+      userId: req.body.userId
     })
     newPlayer.save()
       .then((saved) => {
         console.log("Player saved in database", saved)
+        res.json({"success": true, "player": saved})
       })
       .catch((err) => {
         console.log("failed to save player")
@@ -53,7 +55,6 @@ app.post('/create/user', function(req, res) {
   } else {
     console.log('something went wrong with adding player')
   }
-  res.json({"success": true})
 });
 
 app.post('/login', function(req, res) {
@@ -62,35 +63,50 @@ app.post('/login', function(req, res) {
     if (err) {
       console.log("Error finding user")
     } else if (user) {
-      res.json({success: true})
+      res.json({success: true, player: user})
     } else {
       res.json({success: false})
     }
   })
 });
 
+app.get('/login', function(req, res) {
+  console.log("fetch made")
+  Game.find({}, (err, found) => {
+    res.json({
+      success: true,
+      games: found
+    })
+  })
+});
+
 app.post("/create/game", (req, res) => {
   console.log('reached create game', req.body)
-  if (req.body.gameType && req.body.time && req.body.host) {
-    let newGame = Game({
-      players: [req.body.host],
-      gameType: req.body.gameType,
-      time: new Date(req.body.time),
-      host: req.body.host,
-      skillLevel: req.body.skillLevel,
-      totalPlayers: req.body.totalPlayers
+  Player.findById(req.body.userId)
+    .then((user) => {
+      console.log("user", user)
+      if (req.body.gameType && req.body.time && req.body.host) {
+        let newGame = Game({
+          players: [user.name],
+          gameType: req.body.gameType,
+          time: req.body.time,
+          host: user.name,
+          skillLevel: req.body.skillLevel,
+          totalPlayers: req.body.totalPlayers,
+          imgUrl: user.imgUrl
+        })
+        newGame.save()
+          .then((saved) => {
+            console.log("Game saved in database", saved)
+          })
+          .catch((err) => {
+            console.log("failed to save game", err)
+          })
+      } else {
+        console.log('something went wrong with adding player')
+      }
+      res.json({"success": true})
     })
-    newGame.save()
-      .then((saved) => {
-        console.log("Game saved in database", saved)
-      })
-      .catch((err) => {
-        console.log("failed to save game", err)
-      })
-  } else {
-    console.log('something went wrong with adding player')
-  }
-  res.json({"success": true})
 });
 
 // DO NOT REMOVE THIS LINE :)

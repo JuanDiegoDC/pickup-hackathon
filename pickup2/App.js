@@ -30,6 +30,8 @@ const DismissKeyboard = ({children}) => (
   </TouchableWithoutFeedback>
 )
 
+var user;
+
 class LoginScreen extends React.Component {
   static navigationOptions = (props) => ({
     title: 'LOGIN',
@@ -288,6 +290,8 @@ class Login extends React.Component {
         username: '',
         password: '',
       })
+      user = responseJson.player._id
+      console.log("user id saved in global", user)
       this.redirect()
     } else {
       alert("Not valid username/password!")
@@ -472,12 +476,20 @@ class MapScreen extends React.Component {
 
 class JoinGame extends React.Component {
   static navigationOptions = (props) => ({
-    title: 'Game Time!'
+    title: 'PICK A GAME',
+    headerStyle: {
+      backgroundColor: '#f4511e'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold'
+    },
+    headerLeft: <TouchableOpacity onPress={() => {props.navigation.navigate('Map')}}><Text style={{marginLeft: 25, fontWeight: "bold"}}>COURTS</Text></TouchableOpacity>
   })
 
   constructor(props) {
     super(props);
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows([
         {
@@ -549,33 +561,61 @@ class JoinGame extends React.Component {
     }
   }
 
-  // componentDidMount() {
-  //   //fetch game data from databse
-  // }
+  componentDidMount() {
+    fetch('http://2aa7cc7e.ngrok.io/login', {
+      method: 'GET',
+      headers: {
+      "Content-Type": "application/json"
+      }
+      })
+    .then((response) => response.json())
+    //maybe clear state here before new state is moved in
+    .then((responseJson) => {
+      console.log("Messages Response: ", responseJson)
+      if (!responseJson.success) {
+        alert('Did not successfully set state with messages')
+        console.log(responseJson, "1")
+      } else {
+        console.log(responseJson)
+        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        let yeet = ds.cloneWithRows(responseJson.games)
+        this.setState({
+          dataSource: yeet
+        })
+      }
+    })
+    .catch((err) => {
+        console.log("Error fetching messages!", err)
+      })
+  }
 
   render() {
     return (
-      <View>
+      <View style={{backgroundColor: '#f4511e' }}>
         {/* <View>
           <Text style={{textAlign: 'center'}}>TIME SLOTS</Text>
         </View> */}
         <ListView
         renderRow={(game) => (
-          <View style={{backgroundColor: '#00264d', borderWidth: 2, borderColor: 'white', borderRadius: 4, marginBottom: 5, height: 100}}>
+          <View style={{backgroundColor: '#00264d', borderWidth: 1, borderColor: '#f4511e', borderRadius: 10, height: 125}}>
             <TouchableOpacity>
             <View style={{display: 'flex', flexDirection: "row",
                 alignItems: 'center', justifyContent: 'space-between'}}>
-              <Text style={{paddingTop: 15, paddingLeft: 25, color: 'white'}}>
+              <Text style={{paddingTop: 15, paddingLeft: 25, color: 'white', fontWeight: 'bold'}}>
                 {game.time}
               </Text>
-              <Text style={{textAlign: 'center', paddingTop: 15, color: 'white'}}>
-                {game.gameType} {"\n"}
-                Skill Level: {game.skillLevel} {"\n"}
+              <View style={{borderRightWidth: 2, borderLeftWidth: 2, borderColor: '#f4511e'}}>
+              <Text style={{textAlign: 'center', margin: 10, color: 'white', fontWeight: 'bold'}}>
+                {"\n"}
+                {game.gameType} {"\n"}{"\n"}
+                Skill Level: {game.skillLevel} {"\n"}{"\n"}
                 {game.numberPlayers} / {game.totalPlayers} Players
+                {"\n"}
               </Text>
+              </View>
               <View style={{marginTop: 10, paddingRight: 20}}>
-                <Text style={{color: 'white'}}>Hosted By:</Text>
-                <Image style={{width: 66, height: 58}} source={{uri: (game.imgUrl)}}></Image>
+                <Text style={{color: 'white', fontWeight: 'bold' , paddingLeft: 10, marginBottom: 5}}>Host</Text>
+                <Image style={{width: 60, height: 60, borderRadius: 30, borderColor: "white", borderWidth: 2 }} source={{uri: "https://avatars1.githubusercontent.com/u/38474255?s=60&v=4"}}></Image>
               </View>
             </View>
             </TouchableOpacity>
@@ -590,7 +630,8 @@ class JoinGame extends React.Component {
 
 class CreateGame extends React.Component {
   static navigationOptions = (props) => ({
-    title: 'Ready to Ball?'
+    title: 'Ready to Ball?',
+    headerRight: {<TouchableOpacity onPress = {(event) => this.handleSubmit(event)}><Text>Create Game</Text></TouchableOpacity>}
   })
 
 
@@ -602,7 +643,7 @@ class CreateGame extends React.Component {
       players: [],
       host: '',
       skillLevel: 'hof',
-      totalPlayers: ''
+      totalPlayers: '6'
     };
     this.setDate = this.setDate.bind(this);
   }
@@ -610,21 +651,63 @@ class CreateGame extends React.Component {
   setDate(newDate) {
     this.setState({time: newDate})
   }
+
+  handleSubmit(e) {
+    e.preventDefault()
+    fetch('http://2aa7cc7e.ngrok.io/create/game', {
+    method: 'POST',
+    headers: {
+    "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      players: [this.state.host],
+      gameType: this.state.gameType,
+      time: this.state.time,
+      host: this.state.host,
+      skillLevel: this.state.skillLevel,
+      userId: user
+    })
+    })
+  .then((response) => {
+    console.log("resonse from post ", response)
+    return response.json()
+    })
+  .then((responseJson) => {
+    if (responseJson.success) {
+      console.log("Game Created Success!", responseJson)
+      this.setState({
+        players: '',
+        gameType: '',
+        time: '',
+        host: '',
+        skillLevel: '',
+      })
+    } else {
+      alert(responseJson.error)
+    }
+  })
+  .catch((err) => {
+    console.log("Game Creation Error! (Network)", err)
+  });
+  this.redirectMap()
+}
+
   render() {
     return (
       <View style={{flex: 1,
       justifyContent: 'flex-start',
       backgroundColor: '#00264d'}}>
-        <View>
-          <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Select Game Time</Text>
-        </View>
+
         <View style={{flex: 1, borderWidth: 2, alignItems: 'center', borderColor: 'white'}}>
           {/* <DatePickerIOS
             mode="time"
             date={this.state.time}
             onDateChange={this.setDate}
           /> */}
-          <Picker style={{height: 50, width: 100}} itemStyle = {{color: 'white'}}
+          <View>
+            <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Select Game Time</Text>
+          </View>
+          <Picker style={{height: 50, width: 100}} itemStyle = {{color: 'white', height: 44}}
                   selectedValue={this.state.time}
                   onValueChange={(itemValue, itemIndex) => this.setState({time: itemValue})}>
             <Picker.Item label="12:00" value="12:00"/>
@@ -652,12 +735,23 @@ class CreateGame extends React.Component {
            */}
 
           <Picker style={{height: 50, width: 100}}
-                  itemStyle = {{color: 'white'}}
+                  itemStyle = {{color: 'white', height: 44}}
                   selectedValue={this.state.gameType}
                   onValueChange={(itemValue, itemIndex) => this.setState({gameType: itemValue})}>
             <Picker.Item label="1v1" value="1v1" />
             <Picker.Item label="3v3" value="3v3" />
             <Picker.Item label="5v5" value="5v5" />
+          </Picker>
+        </View>
+        <View style={{flex: 1, borderWidth: 2, borderBottom: 1, height: 20, alignItems: 'center', borderColor: 'white'}}>
+          <Text style = {{color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Player Count</Text>
+          <Picker style={{height: 50, width: 100}}
+                  itemStyle = {{color: 'white', height: 44}}
+                  selectedValue={this.state.totalPlayers}
+                  onValueChange={(itemValue, itemIndex) => this.setState({totalPlayers: itemValue})}>
+            <Picker.Item label="2" value="2" />
+            <Picker.Item label="6" value="6" />
+            <Picker.Item label="10" value="10" />
           </Picker>
         </View>
         <View style={{flex: 1, borderWidth: 2, alignItems: 'center', borderColor: 'white'}}>
@@ -667,7 +761,7 @@ class CreateGame extends React.Component {
             <TouchableHighlight><Text>Pro</Text></TouchableHighlight>
             <TouchableHighlight><Text>H.o.F.</Text></TouchableHighlight> */}
             <Picker style={{height: 50, width: 100}}
-                    itemStyle = {{color: 'white'}}
+                    itemStyle = {{color: 'white', height: 44}}
                     selectedValue={this.state.skillLevel}
                     onValueChange={(itemValue, itemIndex) => this.setState({skillLevel: itemValue})}>
               <Picker.Item label="Rookie" value="rookie" />

@@ -20,10 +20,11 @@ let Player =  mongoose.model('Player', PlayerSchema)
 let GameSchema = new Schema({
   players: Array,
   gameType: String,
-  time: Date,
+  time: String,
   host: String,
   skillLevel: String,
-  totalPlayers: String
+  totalPlayers: String,
+  imgUrl: String
 })
 
 let Game = mongoose.model("Game", GameSchema);
