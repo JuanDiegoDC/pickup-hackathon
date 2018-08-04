@@ -339,7 +339,7 @@ class MapScreen extends React.Component {
         }}>
         <MapView.Marker
           coordinate = {{latitude: 37.779, longitude: -122.4058}}
-          title = {"Gene Friend Recreation Center"}
+          title = {"Gene Friend Recreation Center"}>
         </MapView.Marker>
         <MapView.Marker
           coordinate = {{latitude: 37.777, longitude: -122.406}}
