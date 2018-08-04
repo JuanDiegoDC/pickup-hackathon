@@ -19,15 +19,8 @@ import { MapView } from 'expo';
 
 class LoginScreen extends React.Component {
   static navigationOptions = (props) => ({
-    title: 'LOGIN',
-    headerStyle: {
-      backgroundColor: '#f4511e'
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold'
-    },
-    headerRight: <TouchableOpacity onPress={() => {props.navigation.navigate('Register')}}><Text style={{marginRight: 25, fontWeight: "bold"}}>REGISTER</Text></TouchableOpacity>
+    title: 'Login',
+    headerRight: <TouchableOpacity onPress={() => {props.navigation.navigate('Register')}}><Text>Register</Text></TouchableOpacity>
   });
 
   press() {
@@ -44,7 +37,6 @@ class LoginScreen extends React.Component {
         <ImageBackground source={require('./assets/architecture.jpg')} style={styles.backgroundImage}>
           <View style={styles.content}>
             <Text style={styles.logo}>PICKUP!</Text>
-            <View style={styles.emptySpace}></View>
             <View style={styles.inputContainer}>
               <TouchableOpacity onPress={() => {this.press()} } style={styles.buttonContainer}>
                 <Text style={styles.buttonText}>LOGIN</Text>
@@ -75,15 +67,8 @@ class RegisterScreen extends React.Component {
   }
 
   static navigationOptions = (props) => ({
-    title: "REGISTER",
-    headerStyle: {
-      backgroundColor: '#f4511e'
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold'
-    },
-    headerLeft: <TouchableOpacity onPress={() => {props.navigation.navigate('Login')}}><Text style={{marginLeft: 25, fontWeight: "bold"}}>LOGIN</Text></TouchableOpacity>
+    title: "Register",
+    headerLeft: <TouchableOpacity onPress={() => {props.navigation.navigate('Login')}}><Text>Login</Text></TouchableOpacity>
   })
 
   login() {
@@ -368,6 +353,7 @@ class MapScreen extends React.Component {
 }
 
 
+
 export default StackNavigator({
   Login: {
     screen: LoginScreen,
@@ -452,7 +438,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   content: {
-    alignItems: 'center',
+    alignItems: 'center'
   },
   logo: {
     color: 'white',
@@ -472,8 +458,14 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     borderWidth: 1,
     borderColor: '#fff',
-    backgroundColor: 'rgba(255,255,255,0.7)',
-    borderRadius: 10
+    backgroundColor: 'rgba(255,255,255,0.2)'
+  },
+  input: {
+    fontSize: 16,
+    height: 40,
+    padding: 10,
+    marginBottom: 10,
+    backgroundColor: 'rgba(255,255,255,1)'
   },
   buttonContainer: {
     alignSelf: 'stretch',
@@ -482,8 +474,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     borderWidth: 1,
     borderColor: '#fff',
-    backgroundColor: 'rgba(255,255,255,0.85)',
-    borderRadius: 10
+    backgroundColor: 'rgba(255,255,255,0.6)'
   },
   buttonText: {
     fontSize: 16,
@@ -492,8 +483,5 @@ const styles = StyleSheet.create({
   },
   container1: {
     flex: 1
-  },
-  emptySpace: {
-    margin: 30
   }
 });
