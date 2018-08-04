@@ -6,13 +6,16 @@ import {
   View,
   Text,
   TouchableOpacity,
+  TouchableHighlight,
   TextInput,
   ListView,
   Alert,
   AppRegistry,
   Image,
   Button,
-  ImageBackground
+  ImageBackground,
+  DatePickerIOS,
+  Picker
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 // import { Button } from 'react-native-elements';
@@ -100,7 +103,7 @@ class RegisterScreen extends React.Component {
 
   handleSubmit() {
     // console.log("this state", this.state)
-      fetch('http://e9aa7b6a.ngrok.io/create/user', {
+      fetch('http://2aa7cc7e.ngrok.io/create/user', {
       method: 'POST',
       headers: {
       "Content-Type": "application/json"
@@ -261,7 +264,7 @@ class Login extends React.Component {
   }
 
   handleSubmit() {
-    fetch('http://e9aa7b6a.ngrok.io/login', {
+    fetch('http://2aa7cc7e.ngrok.io/login', {
     method: 'POST',
     headers: {
     "Content-Type": "application/json"
@@ -365,7 +368,7 @@ class MapScreen extends React.Component {
   }
 
   createGame() {
-    alert('create game worked')
+    this.props.navigation.navigate('CreateScreen');
   }
 
   displayCreateGame(e) {
@@ -381,7 +384,7 @@ class MapScreen extends React.Component {
       { cancelable: false }
     )
   }
-
+// hellon
   render() {
     return(
       <View style={{
@@ -396,8 +399,7 @@ class MapScreen extends React.Component {
         }}>
         <MapView.Marker
           coordinate = {{latitude: 37.779, longitude: -122.4058}}
-          title = {"Gene Friend Recreation Center"}
-          onSelect={(e)=>this.displayCreateGame(e)}>
+          title = {"Gene Friend Recreation Center"}>
             <Image
               style={{width: 50, height: 50}}
               source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
@@ -405,8 +407,7 @@ class MapScreen extends React.Component {
         </MapView.Marker>
         <MapView.Marker
           coordinate = {{latitude: 37.777, longitude: -122.406}}
-          title = {"Victoria Manalo Draves Park"}
-          onSelect={(e)=>this.displayCreateGame(e)}>
+          title = {"Victoria Manalo Draves Park"}>
           <Image
             style={{width: 50, height: 50}}
             source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
@@ -427,19 +428,9 @@ class MapScreen extends React.Component {
           </MapView.Callout> */}
         </MapView.Marker>
         <MapView.Marker
-          coordinate = {{latitude: 37.771, longitude: -122.3985}}
-          title = {"Mission Bay Park System"}
-          onSelect={(e)=>this.displayCreateGame(e)}>
-          <Image
-            style={{width: 50, height: 50}}
-            source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
-          />
-        </MapView.Marker>
-
-        <MapView.Marker
-          coordinate = {{latitude: 37.773, longitude: -122.394}}
-          title = {"Mission Creek Park"}
-          onSelect={(e)=>this.displayCreateGame(e)}>
+          coordinate = {{latitude: 37.773, longitude: -122.3936}}
+          title = {"Mission Creek Park Pavilion"}
+          >
           <Image
             style={{width: 50, height: 50}}
             source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
@@ -538,6 +529,59 @@ class JoinGame extends React.Component {
   }
 }
 
+class CreateGame extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      chosenDate: new Date(),
+      gameType: ''
+    };
+    this.setDate = this.setDate.bind(this);
+  }
+
+  setDate(newDate) {
+    this.setState({chosenDate: newDate})
+  }
+
+  render() {
+    return (
+      <View style={{flex: 1,
+      justifyContent: 'flex-start',
+      backgroundColor: 'white'}}>
+        <View>
+          <Text style={{color: 'black', fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Select Game Time</Text>
+        </View>
+        <View style={{flex: 1}}>
+          <DatePickerIOS
+            mode="time"
+            date={this.state.chosenDate}
+            onDateChange={this.setDate}
+          />
+        </View>
+        <View style={{flex: 1, bottom: 40, borderWidth: 4, height: 30}}>
+          <Text style = {{color: 'black', fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Game Type</Text>
+          <View style={{flex: 1, flexDirection: "row", justifyContent: 'center', alignItems: 'center'}}>
+              <TouchableHighlight underlayColor="blue" label="1v1" value="1v1"><Text style={{fontSize: 15, margin: 10}}>1v1</Text></TouchableHighlight>
+              <TouchableHighlight underlayColor="blue" label="2v2" value="2v2"><Text style={{fontSize: 15, margin: 10}}>2v2</Text></TouchableHighlight>
+              <TouchableHighlight underlayColor="blue" label="3v3" value="3v3"><Text style={{fontSize: 15, margin: 10}}>3v3</Text></TouchableHighlight>
+              <TouchableHighlight underlayColor="blue" label="4v4" value="4v4"><Text style={{fontSize: 15, margin: 10}}>4v4</Text></TouchableHighlight>
+              <TouchableHighlight underlayColor="blue" label="5v5" value="5v5"><Text style={{fontSize: 15, margin: 10}}>5v5</Text></TouchableHighlight>
+          </View>
+        </View>
+        <View style={{flex: 1}}>
+          <Text style={{color: 'black', fontWeight: 'bold', fontSize: 20, textAlign: "center"}}>Skill Level</Text>
+          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <TouchableHighlight><Text>Rookie</Text></TouchableHighlight>
+            <TouchableHighlight><Text>Pro</Text></TouchableHighlight>
+            <TouchableHighlight><Text>H.o.F.</Text></TouchableHighlight>
+          </View>
+        </View>
+      </View>
+    )
+  }
+}
+//position: 'aboslute', bottom: 120
+
 export default StackNavigator({
   Login: {
     screen: LoginScreen,
@@ -553,6 +597,9 @@ export default StackNavigator({
   },
   JoinScreen: {
     screen: JoinGame
+  },
+  CreateScreen: {
+    screen: CreateGame
   }
 }, {initialRouteName: 'Login'});
 
@@ -563,6 +610,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#00264d'
+  },
+  containerJoinGames: {
+    flex: 1,
+    padding: 8,
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   buttonsContainer: {
     flexDirection: 'row',
