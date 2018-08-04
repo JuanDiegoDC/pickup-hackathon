@@ -6,6 +6,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  TouchableHighlight,
   TextInput,
   ListView,
   Alert,
@@ -13,7 +14,8 @@ import {
   Image,
   Button,
   ImageBackground,
-  DatePickerIOS
+  DatePickerIOS,
+  Picker
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 // import { Button } from 'react-native-elements';
@@ -402,7 +404,6 @@ class MapScreen extends React.Component {
             <Image
               style={{width: 50, height: 50}}
               source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
-
             />
         </MapView.Marker>
         <MapView.Marker
@@ -589,7 +590,10 @@ class JoinGame extends React.Component {
 class CreateGame extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { chosenDate: new Date() };
+    this.state = {
+      chosenDate: new Date(),
+      gameType: ''
+    };
     this.setDate = this.setDate.bind(this);
   }
 
@@ -599,16 +603,42 @@ class CreateGame extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <DatePickerIOS
-          date={this.state.chosenDate}
-          onDateChange={this.setDate}
-        />
+      <View style={{flex: 1,
+      justifyContent: 'flex-start',
+      backgroundColor: 'white'}}>
+        <View>
+          <Text style={{color: 'black', fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Select Game Time</Text>
+        </View>
+        <View style={{flex: 1}}>
+          <DatePickerIOS
+            mode="time"
+            date={this.state.chosenDate}
+            onDateChange={this.setDate}
+          />
+        </View>
+        <View style={{flex: 1, bottom: 40, borderWidth: 4, height: 30}}>
+          <Text style = {{color: 'black', fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Game Type</Text>
+          <View style={{flex: 1, flexDirection: "row", justifyContent: 'center', alignItems: 'center'}}>
+              <TouchableHighlight underlayColor="blue" label="1v1" value="1v1"><Text style={{fontSize: 15, margin: 10}}>1v1</Text></TouchableHighlight>
+              <TouchableHighlight underlayColor="blue" label="2v2" value="2v2"><Text style={{fontSize: 15, margin: 10}}>2v2</Text></TouchableHighlight>
+              <TouchableHighlight underlayColor="blue" label="3v3" value="3v3"><Text style={{fontSize: 15, margin: 10}}>3v3</Text></TouchableHighlight>
+              <TouchableHighlight underlayColor="blue" label="4v4" value="4v4"><Text style={{fontSize: 15, margin: 10}}>4v4</Text></TouchableHighlight>
+              <TouchableHighlight underlayColor="blue" label="5v5" value="5v5"><Text style={{fontSize: 15, margin: 10}}>5v5</Text></TouchableHighlight>
+          </View>
+        </View>
+        <View style={{flex: 1}}>
+          <Text style={{color: 'black', fontWeight: 'bold', fontSize: 20, textAlign: "center"}}>Skill Level</Text>
+          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <TouchableHighlight><Text>Rookie</Text></TouchableHighlight>
+            <TouchableHighlight><Text>Pro</Text></TouchableHighlight>
+            <TouchableHighlight><Text>H.o.F.</Text></TouchableHighlight>
+          </View>
+        </View>
       </View>
     )
   }
 }
-
+//position: 'aboslute', bottom: 120
 
 export default StackNavigator({
   Login: {
