@@ -84,7 +84,7 @@ class RegisterScreen extends React.Component {
   }
 
   handleSubmit() {
-    console.log("this state", this.state)
+    // console.log("this state", this.state)
       fetch('http://e9aa7b6a.ngrok.io/create/user', {
       method: 'POST',
       headers: {
@@ -226,37 +226,42 @@ class Login extends React.Component {
     this.props.navigation.navigate('Map');
   }
 
-  handleSubmit(event) {
-    event.preventDefault()
-      fetch('http://e9aa7b6a.ngrok.io/login', {
-      method: 'POST',
-      headers: {
-      "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password,
-      })
-      })
+  redirectLogin() {
+    this.props.navigation.navigate('LoginScreen');
+  }
+
+  handleSubmit() {
+    fetch('http:localhost:1337/login', {
+    method: 'POST',
+    headers: {
+    "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      username: this.state.username,
+      password: this.state.password,
+    })
+    })
     .then((response) => {
-      console.log("resonse from post ", response)
-      return response.json()
-      })
+    console.log("resonse from post ", response)
+    return response.json()
+    })
     .then((responseJson) => {
-      if (responseJson.success) {
-        console.log("Login Success!", responseJson)
-        this.setState({
-          username: '',
-          password: '',
-        })
-      } else {
-        alert(responseJson.error)
-      }
+      console.log("responseJson", responseJson)
+    if (responseJson.success) {
+      console.log("Login Success!", responseJson)
+      this.setState({
+        username: '',
+        password: '',
+      })
+      this.redirect()
+    } else {
+      alert("Not valid username/password!")
+      this.redirectLogin()
+    }
     })
     .catch((err) => {
-      console.log("Login Error! (Network)", err)
+    console.log("Login Error! (Network)", err)
     });
-    this.redirect()
   }
 
 
@@ -302,24 +307,37 @@ class MapScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lat: 37.802981,
-      long: -122.412146,
-      latDelta: .1,
-      longDelta: .05
+      lat: 37.77,
+      long: -122.401,
+      latDelta: .02,
+      longDelta: .015
     }
   }
+
+  static navigationOptions = (props) => ({
+    title: "Pick your Court Young Blood",
+  })
 
   render() {
     return(
       <View style={{
           flex: 1
         }}>
+        <MapView style={{flex: 7}}
+        region={{
+          latitude: this.state.lat,
+          longitude: this.state.long,
+          latitudeDelta: this.state.latDelta,
+          longitudeDelta: this.state.longDelta
+        }}
+        />
         <View style={{flex: 1, flexDirection: 'row'}}>
 
           <TouchableOpacity
             style={{flex: 1,
               borderWidth: 1,
               alignItems: 'center',
+              borderRadius: 4,
               justifyContent: 'center'}}
               onPress={() => this.handleInstanbul()}>
             <Text>Join Game</Text>
@@ -329,20 +347,13 @@ class MapScreen extends React.Component {
             style={{flex: 1,
               borderWidth: 1,
               alignItems: 'center',
+              borderRadius: 4,
               justifyContent: 'center'}}
               onPress={() => this.handleCurrent()}>
-            <Text>Here</Text>
+            <Text>Create Game</Text>
           </TouchableOpacity>
 
         </View>
-        <MapView style={{flex: 7}}
-        region={{
-          latitude: this.state.lat,
-          longitude: this.state.long,
-          latitudeDelta: this.state.latDelta,
-          longitudeDelta: this.state.longDelta
-        }}
-        />
       </View>
     )
   }
