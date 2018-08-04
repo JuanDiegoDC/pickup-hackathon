@@ -1,5 +1,7 @@
 import React from 'react';
 import {
+  TouchableWithoutFeedback,
+  Keyboard,
   StyleSheet,
   View,
   Text,
@@ -16,6 +18,12 @@ import { StackNavigator } from 'react-navigation';
 // import { Button } from 'react-native-elements';
 // import { Icon } from 'react-native-vector-icons/FontAwesome';
 import { MapView } from 'expo';
+
+const DismissKeyboard = ({children}) => (
+  <TouchableWithoutFeedback onPress = {() => Keyboard.dismiss()}>
+    {children}
+  </TouchableWithoutFeedback>
+)
 
 class LoginScreen extends React.Component {
   static navigationOptions = (props) => ({
@@ -135,6 +143,7 @@ class RegisterScreen extends React.Component {
 
   render() {
     return (
+      <DismissKeyboard>
       <View style={styles.container}>
         <Image
           style={{width: 150, height: 150, marginBottom: 20}}
@@ -215,6 +224,7 @@ class RegisterScreen extends React.Component {
           </TouchableOpacity>
         </View>
       </View>
+    </DismissKeyboard>
     )
   }
 }
@@ -287,11 +297,13 @@ class Login extends React.Component {
 
   render() {
     return (
+      <DismissKeyboard>
       <View style={styles.container}>
         <Image
           style={{width: 150, height: 150, marginBottom: 20}}
           source={require('./mjtransparent.png')}
         />
+
         <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
           <TextInput
             style={{height: 40, width: 300, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
@@ -311,6 +323,7 @@ class Login extends React.Component {
             value = {this.state.password}
           />
         </View>
+
         <View style={{backgroundColor: '#f4511e', borderRadius: 4, borderWidth: 0.5}}>
           <TouchableOpacity onPress={(e) => this.handleSubmit(e)}>
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
@@ -319,6 +332,7 @@ class Login extends React.Component {
         </TouchableOpacity>
       </View>
       </View>
+        </DismissKeyboard>
     )
   }
 }
