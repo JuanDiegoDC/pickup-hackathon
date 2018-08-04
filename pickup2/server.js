@@ -6,6 +6,7 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 const assert = require('assert')
 const Player = require('./models').Player;
+const Game = require("./models").Game;
 
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -67,6 +68,10 @@ app.post('/login', function(req, res) {
     }
   })
 });
+
+app.post("/create", (req, res) => {
+  
+})
 
 // DO NOT REMOVE THIS LINE :)
 app.get('/', function (req, res) {

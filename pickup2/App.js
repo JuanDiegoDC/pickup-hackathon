@@ -13,7 +13,7 @@ import {
   Image,
   Button,
   ImageBackground
-} from 'react-native';
+} from 'react-native'; 
 import { StackNavigator } from 'react-navigation';
 // import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
