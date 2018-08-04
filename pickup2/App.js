@@ -472,7 +472,15 @@ class MapScreen extends React.Component {
 
 class JoinGame extends React.Component {
   static navigationOptions = (props) => ({
-    title: 'Game Time!'
+    title: 'PICK A GAME',
+    headerStyle: {
+      backgroundColor: '#f4511e'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold'
+    },
+    headerLeft: <TouchableOpacity onPress={() => {props.navigation.navigate('Map')}}><Text style={{marginLeft: 25, fontWeight: "bold"}}>COURTS</Text></TouchableOpacity>
   })
 
   constructor(props) {
@@ -555,27 +563,31 @@ class JoinGame extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={{backgroundColor: '#f4511e' }}>
         {/* <View>
           <Text style={{textAlign: 'center'}}>TIME SLOTS</Text>
         </View> */}
         <ListView
         renderRow={(game) => (
-          <View style={{backgroundColor: '#00264d', borderWidth: 2, borderColor: 'white', borderRadius: 4, marginBottom: 5, height: 100}}>
+          <View style={{backgroundColor: '#00264d', borderWidth: 1, borderColor: '#f4511e', borderRadius: 10, height: 125}}>
             <TouchableOpacity>
             <View style={{display: 'flex', flexDirection: "row",
                 alignItems: 'center', justifyContent: 'space-between'}}>
-              <Text style={{paddingTop: 15, paddingLeft: 25, color: 'white'}}>
+              <Text style={{paddingTop: 15, paddingLeft: 25, color: 'white', fontWeight: 'bold'}}>
                 {game.time}
               </Text>
-              <Text style={{textAlign: 'center', paddingTop: 15, color: 'white'}}>
-                {game.gameType} {"\n"}
-                Skill Level: {game.skillLevel} {"\n"}
+              <View style={{borderRightWidth: 2, borderLeftWidth: 2, borderColor: '#f4511e'}}>
+              <Text style={{textAlign: 'center', margin: 10, color: 'white', fontWeight: 'bold'}}>
+                {"\n"}
+                {game.gameType} {"\n"}{"\n"}
+                Skill Level: {game.skillLevel} {"\n"}{"\n"}
                 {game.numberPlayers} / {game.totalPlayers} Players
+                {"\n"}
               </Text>
+              </View>
               <View style={{marginTop: 10, paddingRight: 20}}>
-                <Text style={{color: 'white'}}>Hosted By:</Text>
-                <Image style={{width: 66, height: 58}} source={{uri: (game.imgUrl)}}></Image>
+                <Text style={{color: 'white', fontWeight: 'bold' , paddingLeft: 10, marginBottom: 5}}>Host</Text>
+                <Image style={{width: 60, height: 60, borderRadius: 30, borderColor: "white", borderWidth: 2 }} source={{uri: "https://avatars1.githubusercontent.com/u/38474255?s=60&v=4"}}></Image>
               </View>
             </View>
             </TouchableOpacity>
