@@ -238,7 +238,7 @@ class Login extends React.Component {
   }
 
   handleSubmit() {
-    fetch('http:localhost:1337/login', {
+    fetch('http://e9aa7b6a.ngrok.io/login', {
     method: 'POST',
     headers: {
     "Content-Type": "application/json"
