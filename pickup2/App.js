@@ -629,21 +629,15 @@ class JoinGame extends React.Component {
 }
 
 class CreateGame extends React.Component {
-  static navigationOptions = (props) => ({
-    title: 'Ready to Ball?',
-    headerRight: {<TouchableOpacity onPress = {(event) => this.handleSubmit(event)}><Text>Create Game</Text></TouchableOpacity>}
-  })
-
-
   constructor(props) {
     super(props);
     this.state = {
-      time: '5:00',
-      gameType: '5v5',
+      time: new Date(),
+      gameType: '',
       players: [],
       host: '',
-      skillLevel: 'hof',
-      totalPlayers: '6'
+      skillLevel: '',
+      totalPlayers: ''
     };
     this.setDate = this.setDate.bind(this);
   }
@@ -701,78 +695,33 @@ class CreateGame extends React.Component {
     return (
       <View style={{flex: 1,
       justifyContent: 'flex-start',
-      backgroundColor: '#00264d'}}>
-
-        <View style={{flex: 1, borderWidth: 2, alignItems: 'center', borderColor: 'white'}}>
-          {/* <DatePickerIOS
+      backgroundColor: 'white'}}>
+        <View>
+          <Text style={{color: 'black', fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Select Game Time</Text>
+        </View>
+        <View style={{flex: 1}}>
+          <DatePickerIOS
             mode="time"
             date={this.state.time}
             onDateChange={this.setDate}
-          /> */}
-          <View>
-            <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Select Game Time</Text>
-          </View>
-          <Picker style={{height: 50, width: 100}} itemStyle = {{color: 'white', height: 44}}
-                  selectedValue={this.state.time}
-                  onValueChange={(itemValue, itemIndex) => this.setState({time: itemValue})}>
-            <Picker.Item label="12:00" value="12:00"/>
-            <Picker.Item label="1:00" value="1:00" />
-            <Picker.Item label="2:00" value="2:00" />
-            <Picker.Item label="3:00" value="3:00" />
-            <Picker.Item label="4:00" value="4:00" />
-            <Picker.Item label="5:00" value="5:00" />
-            <Picker.Item label="6:00" value="6:00" />
-            <Picker.Item label="7:00" value="7:00" />
-            <Picker.Item label="8:00" value="8:00" />
-            <Picker.Item label="9:00" value="9:00" />
-            <Picker.Item label="10:00" value="10:00" />
-            <Picker.Item label="11:00" value="11:00" />
-          </Picker>
+          />
         </View>
-        <View style={{flex: 1, borderWidth: 2, borderBottom: 1, height: 20, alignItems: 'center', borderColor: 'white'}}>
-          <Text style = {{color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Game Type</Text>
-          {/* <View style={{flex: 1, flexDirection: "row", justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{flex: 1, bottom: 40, borderWidth: 4, height: 30}}>
+          <Text style = {{color: 'black', fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Game Type</Text>
+          <View style={{flex: 1, flexDirection: "row", justifyContent: 'center', alignItems: 'center'}}>
               <TouchableHighlight underlayColor="blue" label="1v1" value="1v1"><Text style={{fontSize: 15, margin: 10}}>1v1</Text></TouchableHighlight>
               <TouchableHighlight underlayColor="blue" label="2v2" value="2v2"><Text style={{fontSize: 15, margin: 10}}>2v2</Text></TouchableHighlight>
               <TouchableHighlight underlayColor="blue" label="3v3" value="3v3"><Text style={{fontSize: 15, margin: 10}}>3v3</Text></TouchableHighlight>
               <TouchableHighlight underlayColor="blue" label="4v4" value="4v4"><Text style={{fontSize: 15, margin: 10}}>4v4</Text></TouchableHighlight>
               <TouchableHighlight underlayColor="blue" label="5v5" value="5v5"><Text style={{fontSize: 15, margin: 10}}>5v5</Text></TouchableHighlight>
-           */}
-
-          <Picker style={{height: 50, width: 100}}
-                  itemStyle = {{color: 'white', height: 44}}
-                  selectedValue={this.state.gameType}
-                  onValueChange={(itemValue, itemIndex) => this.setState({gameType: itemValue})}>
-            <Picker.Item label="1v1" value="1v1" />
-            <Picker.Item label="3v3" value="3v3" />
-            <Picker.Item label="5v5" value="5v5" />
-          </Picker>
+          </View>
         </View>
-        <View style={{flex: 1, borderWidth: 2, borderBottom: 1, height: 20, alignItems: 'center', borderColor: 'white'}}>
-          <Text style = {{color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Player Count</Text>
-          <Picker style={{height: 50, width: 100}}
-                  itemStyle = {{color: 'white', height: 44}}
-                  selectedValue={this.state.totalPlayers}
-                  onValueChange={(itemValue, itemIndex) => this.setState({totalPlayers: itemValue})}>
-            <Picker.Item label="2" value="2" />
-            <Picker.Item label="6" value="6" />
-            <Picker.Item label="10" value="10" />
-          </Picker>
-        </View>
-        <View style={{flex: 1, borderWidth: 2, alignItems: 'center', borderColor: 'white'}}>
-          <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: "center"}}>Skill Level</Text>
-          <View>
-            {/* <TouchableHighlight><Text>Rookie</Text></TouchableHighlight>
+        <View style={{flex: 1}}>
+          <Text style={{color: 'black', fontWeight: 'bold', fontSize: 20, textAlign: "center"}}>Skill Level</Text>
+          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <TouchableHighlight><Text>Rookie</Text></TouchableHighlight>
             <TouchableHighlight><Text>Pro</Text></TouchableHighlight>
-            <TouchableHighlight><Text>H.o.F.</Text></TouchableHighlight> */}
-            <Picker style={{height: 50, width: 100}}
-                    itemStyle = {{color: 'white', height: 44}}
-                    selectedValue={this.state.skillLevel}
-                    onValueChange={(itemValue, itemIndex) => this.setState({skillLevel: itemValue})}>
-              <Picker.Item label="Rookie" value="rookie" />
-              <Picker.Item label="Pro" value="pro" />
-              <Picker.Item label="HoF" value="hof" />
-            </Picker>
+            <TouchableHighlight><Text>H.o.F.</Text></TouchableHighlight>
           </View>
         </View>
       </View>
@@ -787,7 +736,7 @@ class Profile extends React.Component {
     this.state = {
       user: {}
     }
-  } //
+  } 
 
   componentDidMount() {
     fetch('http://2aa7cc7e.ngrok.io/profile', {
@@ -819,8 +768,9 @@ class Profile extends React.Component {
   render(){
     return(
       <View style={{backgroundColor: '#f4511e'}}>
-        <View style={{backgroundColor: '#00264d', borderWidth: 1, borderColor: '#f4511e', borderRadius: 10}>
-          <Text style={{}}>{this.state.user}</Text>
+        <View style={{backgroundColor: '#00264d', borderWidth: 1, borderColor: '#f4511e', borderRadius: 10}}>
+          <Text>{this.state.user}</Text>
+          <Text></Text>
         </View>
       </View>
     )
