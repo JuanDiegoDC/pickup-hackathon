@@ -36,7 +36,7 @@ var submitGameForm;
 
 class LoginScreen extends React.Component {
   static navigationOptions = (props) => ({
-    title: 'LOGIN',
+    title: 'HOME',
     headerStyle: {
       backgroundColor: '#f4511e'
     },
@@ -155,7 +155,7 @@ class RegisterScreen extends React.Component {
       <DismissKeyboard>
       <View style={styles.container}>
         <Image
-          style={{width: 150, height: 150, marginBottom: 20}}
+          style={{width: 150, height: 150, marginBottom: 20, marginTop: 15}}
           // source={{uri: 'http://www.nationalfanthem.com/ShirtPieces/Crying_Michael_Jordan_Meme_Sad_Chicago_Bulls_Fan--ZM--BLK.jpg'}}/>
             source={require('./mjtransparent.png')}
          />
@@ -240,7 +240,7 @@ class RegisterScreen extends React.Component {
 
 class Login extends React.Component {
   static navigationOptions = (props) => ({
-    title: "REGISTER",
+    title: "LOGIN",
     headerStyle: {
       backgroundColor: '#f4511e'
     },
@@ -248,7 +248,7 @@ class Login extends React.Component {
     headerTitleStyle: {
       fontWeight: 'bold'
     },
-    headerLeft: <TouchableOpacity onPress={() => {props.navigation.navigate('Login')}}><Text style={{marginLeft: 25, fontWeight: "bold"}}>LOGIN</Text></TouchableOpacity>
+    headerLeft: <TouchableOpacity onPress={() => {props.navigation.navigate('Login')}}><Text style={{marginLeft: 25, fontWeight: "bold"}}>HOME</Text></TouchableOpacity>
   })
 
   constructor(props) {
@@ -639,6 +639,14 @@ class JoinGame extends React.Component {
 class CreateGame extends React.Component {
   static navigationOptions = (props) => ({
     title: 'Ready to Ball?',
+    headerStyle: {
+      backgroundColor: '#f4511e'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold'
+    },
+    headerLeft: null
     // headerRight: {<TouchableOpacity onPress = {(event) => {submitGameForm(event)}}><Text>Create Game</Text></TouchableOpacity>}
   })
 
