@@ -551,6 +551,48 @@ class CreateGame extends React.Component {
     this.setState({time: newDate})
   }
 
+  redirectMap() {
+    this.props.navigation.navigate('Map');
+  }
+
+  handleSubmit(e) {
+    e.preventDefault()
+    fetch('http://2aa7cc7e.ngrok.io/create/game', {
+    method: 'POST',
+    headers: {
+    "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      players: [this.state.host],
+      gameType: this.state.gameType,
+      time: this.state.time,
+      host: this.state.host,
+      skillLevel: this.state.skillLevel,
+    })
+    })
+  .then((response) => {
+    console.log("resonse from post ", response)
+    return response.json()
+    })
+  .then((responseJson) => {
+    if (responseJson.success) {
+      console.log("Game Created Success!", responseJson)
+      this.setState({
+        players: '',
+        gameType: '',
+        time: '',
+        host: '',
+        skillLevel: '',
+      })
+    } else {
+      alert(responseJson.error)
+    }
+  })
+  .catch((err) => {
+    console.log("Game Creation Error! (Network)", err)
+  });
+  this.redirectMap()
+}
 
 
   render() {
