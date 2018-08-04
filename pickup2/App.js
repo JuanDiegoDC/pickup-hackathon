@@ -732,3 +732,11 @@ const styles = StyleSheet.create({
     margin: 30
   }
 });
+
+// {
+//   players: ["tim"],
+//     gameType: "3v3",
+//     time: "10:00",
+//     host: "tim",
+//     skillLevel: "Rookie,
+// }
