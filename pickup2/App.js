@@ -652,6 +652,10 @@ class CreateGame extends React.Component {
     this.setState({time: newDate})
   }
 
+  redirectMap() {
+    this.props.navigation.navigate('Map');
+  }
+
   handleSubmit(e) {
     e.preventDefault()
     fetch('http://2aa7cc7e.ngrok.io/create/game', {
