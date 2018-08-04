@@ -507,7 +507,7 @@ class JoinGame extends React.Component {
         <View>
           <Text style={{textAlign: 'center'}}>TIME SLOTS</Text>
         </View>
-        <ListView
+        <ListView style={styles.containerJoinGames}
         renderRow={(game) => (
           <View>
             <TouchableOpacity>
@@ -558,7 +558,7 @@ const styles = StyleSheet.create({
     padding: 8,
     flexDirection: 'row',
     alignItems: 'center'
-  }
+  },
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
