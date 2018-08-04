@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 // import { Button } from 'react-native-elements';
-// import { Icon } from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { MapView } from 'expo';
 
 class LoginScreen extends React.Component {
@@ -325,7 +325,7 @@ class Login extends React.Component {
 
 class MapScreen extends React.Component {
   static navigationOptions = (props) => ({
-    title: "Pick your Court Young Blood",
+    title: "Pick Your Court Young Blood",
     headerStyle: {
       backgroundColor: '#f4511e'
     },
@@ -402,26 +402,28 @@ class MapScreen extends React.Component {
           />
         </MapView.Marker>
       </MapView>
-        <View style={{flex: 1, flexDirection: 'row'}}>
+        <View style={{flex: 1, flexDirection: 'row', backgroundColor: '#f4511e'}}>
 
           <TouchableOpacity
-            style={{flex: 1,
-              borderWidth: 1,
+            style={{
+              flex: 1,
               alignItems: 'center',
               borderRadius: 4,
-              justifyContent: 'center'}}
+              justifyContent: 'center'
+            }}
               onPress={() => this.handleInstanbul()}>
-            <Text>Join Game</Text>
+            <Text style={{fontWeight: 'bold', color: "white"}}>{<Icon name="user" size={20}/>}{'  '}PROFILE</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={{flex: 1,
-              borderWidth: 1,
+            style={{
+              flex: 1,
               alignItems: 'center',
               borderRadius: 4,
-              justifyContent: 'center'}}
+              justifyContent: 'center'
+            }}
               onPress={() => this.handleCurrent()}>
-            <Text>Create Game</Text>
+            <Text style={{fontWeight: 'bold', color: "white"}}>GAMES{'  '}{<Icon name="trophy" size={20}/>}</Text>
           </TouchableOpacity>
 
         </View>
