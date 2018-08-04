@@ -18,16 +18,11 @@ let PlayerSchema = new Schema({
 let Player =  mongoose.model('Player', PlayerSchema)
 
 let GameSchema = new Schema({
-  players: {
-    type: [],
-    ref: "Player"
-  },
+  players: Array,
   gameType: String,
   time: Date,
-  host: {
-    type: mongoose.Schema.ObjectId,
-    ref: "Player"
-  }
+  host: String,
+  skillLevel: String
 })
 
 let Game = mongoose.model("Game", GameSchema);
