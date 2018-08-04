@@ -635,7 +635,6 @@ class CreateGame extends React.Component {
     headerRight: {<TouchableOpacity onPress = {(event) => {submitGameForm(event)}}><Text>Create Game</Text></TouchableOpacity>}
   })
 
-
   constructor(props) {
     super(props);
     this.state = {
