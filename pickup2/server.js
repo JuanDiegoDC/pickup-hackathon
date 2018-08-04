@@ -66,7 +66,6 @@ app.post('/login', function(req, res) {
       res.json({success: false})
     }
   })
-
 });
 
 // DO NOT REMOVE THIS LINE :)
