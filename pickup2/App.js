@@ -300,11 +300,11 @@ class Login extends React.Component {
       <DismissKeyboard>
       <View style={styles.container}>
         <Image
-          style={{width: 150, height: 150, marginBottom: 20}}
+          style={{width: 150, height: 150, marginBottom: 20, marginTop: 45}}
           source={require('./mjtransparent.png')}
         />
 
-        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
+        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 20}}>
           <TextInput
             style={{height: 40, width: 300, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
             placeholder="Username"
@@ -313,7 +313,7 @@ class Login extends React.Component {
             value={this.state.username}
           />
         </View>
-        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
+        <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 20}}>
           <TextInput
             style={{height: 40, width: 300, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
             placeholder="Password"
@@ -558,9 +558,9 @@ export default StackNavigator({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: '#00264d',
+    backgroundColor: '#00264d'
   },
   buttonsContainer: {
     flexDirection: 'row',
