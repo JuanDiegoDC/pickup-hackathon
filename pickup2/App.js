@@ -520,7 +520,7 @@ class JoinGame extends React.Component {
         <View>
           <Text style={{textAlign: 'center'}}>TIME SLOTS</Text>
         </View>
-        <ListView
+        <ListView style={{width: 100}}
         renderRow={(game) => (
           <View>
             <TouchableOpacity>
