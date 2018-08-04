@@ -31,6 +31,7 @@ const DismissKeyboard = ({children}) => (
 )
 
 var user;
+var userObj;
 var submitGameForm;
 
 class LoginScreen extends React.Component {
@@ -292,7 +293,9 @@ class Login extends React.Component {
         password: '',
       })
       user = responseJson.player._id
+      userObj = responseJson.player
       console.log("user id saved in global", user)
+      console.log("user saved in global", userObj)
       this.redirect()
     } else {
       alert("Not valid username/password!")
@@ -376,6 +379,10 @@ class MapScreen extends React.Component {
 
   createGame() {
     this.props.navigation.navigate('CreateScreen');
+  }
+
+  handleInstanbul() {
+    this.props.navigation.navigate('ProfileScreen');
   }
 
   displayCreateGame(e) {
@@ -493,71 +500,71 @@ class JoinGame extends React.Component {
     let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows([
-        {
-        time: "10AM",
-        gameType: "3v3",
-        skillLevel: "Mad Skills",
-        numberPlayers: "5",
-        totalPlayers: "6",
-        host: 'juan',
-        imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
-        }, {
-        time: "11AM",
-        gameType: "4v4",
-        skillLevel: "Sad Skills",
-        numberPlayers: "3",
-        totalPlayers: "8",
-        host: 'will',
-        imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
-        }, {
-        time: "1PM",
-        gameType: "5v5",
-        skillLevel: "Sad Skills",
-        numberPlayers: "8",
-        totalPlayers: "10",
-        host: 'asheesh',
-        imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
-        } , {
-        time: "1PM",
-        gameType: "5v5",
-        skillLevel: "Sad Skills",
-        numberPlayers: "8",
-        totalPlayers: "10",
-        host: 'asheesh',
-        imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
-        }, {
-        time: "1PM",
-        gameType: "5v5",
-        skillLevel: "Sad Skills",
-        numberPlayers: "8",
-        totalPlayers: "10",
-        host: 'asheesh',
-        imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
-        }, {
-        time: "1PM",
-        gameType: "5v5",
-        skillLevel: "Sad Skills",
-        numberPlayers: "8",
-        totalPlayers: "10",
-        host: 'asheesh',
-        imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
-        }, {
-        time: "1PM",
-        gameType: "5v5",
-        skillLevel: "Sad Skills",
-        numberPlayers: "8",
-        totalPlayers: "10",
-        host: 'asheesh',
-        imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
-        }, {
-        time: "1PM",
-        gameType: "5v5",
-        skillLevel: "Sad Skills",
-        numberPlayers: "8",
-        totalPlayers: "10",
-        host: 'asheesh',
-        imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
-        }
+        // {
+        // time: "10AM",
+        // gameType: "3v3",
+        // skillLevel: "Mad Skills",
+        // numberPlayers: "5",
+        // totalPlayers: "6",
+        // host: 'juan',
+        // imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
+        // }, {
+        // time: "11AM",
+        // gameType: "4v4",
+        // skillLevel: "Sad Skills",
+        // numberPlayers: "3",
+        // totalPlayers: "8",
+        // host: 'will',
+        // imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
+        // }, {
+        // time: "1PM",
+        // gameType: "5v5",
+        // skillLevel: "Sad Skills",
+        // numberPlayers: "8",
+        // totalPlayers: "10",
+        // host: 'asheesh',
+        // imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
+        // } , {
+        // time: "1PM",
+        // gameType: "5v5",
+        // skillLevel: "Sad Skills",
+        // numberPlayers: "8",
+        // totalPlayers: "10",
+        // host: 'asheesh',
+        // imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
+        // }, {
+        // time: "1PM",
+        // gameType: "5v5",
+        // skillLevel: "Sad Skills",
+        // numberPlayers: "8",
+        // totalPlayers: "10",
+        // host: 'asheesh',
+        // imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
+        // }, {
+        // time: "1PM",
+        // gameType: "5v5",
+        // skillLevel: "Sad Skills",
+        // numberPlayers: "8",
+        // totalPlayers: "10",
+        // host: 'asheesh',
+        // imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
+        // }, {
+        // time: "1PM",
+        // gameType: "5v5",
+        // skillLevel: "Sad Skills",
+        // numberPlayers: "8",
+        // totalPlayers: "10",
+        // host: 'asheesh',
+        // imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
+        // }, {
+        // time: "1PM",
+        // gameType: "5v5",
+        // skillLevel: "Sad Skills",
+        // numberPlayers: "8",
+        // totalPlayers: "10",
+        // host: 'asheesh',
+        // imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
+        // }
       ])
     }
   }
@@ -616,7 +623,7 @@ class JoinGame extends React.Component {
               </View>
               <View style={{marginTop: 10, paddingRight: 20}}>
                 <Text style={{color: 'white', fontWeight: 'bold' , paddingLeft: 10, marginBottom: 5}}>Host</Text>
-                <Image style={{width: 60, height: 60, borderRadius: 30, borderColor: "white", borderWidth: 2 }} source={{uri: "https://avatars1.githubusercontent.com/u/38474255?s=60&v=4"}}></Image>
+                <Image style={{width: 60, height: 60, borderRadius: 30, borderColor: "white", borderWidth: 2 }} source={{uri: game.imgUrl}}></Image>
               </View>
             </View>
             </TouchableOpacity>
@@ -632,7 +639,7 @@ class JoinGame extends React.Component {
 class CreateGame extends React.Component {
   static navigationOptions = (props) => ({
     title: 'Ready to Ball?',
-    headerRight: {<TouchableOpacity onPress = {(event) => {submitGameForm(event)}}><Text>Create Game</Text></TouchableOpacity>}
+    // headerRight: {<TouchableOpacity onPress = {(event) => {submitGameForm(event)}}><Text>Create Game</Text></TouchableOpacity>}
   })
 
   constructor(props) {
@@ -646,7 +653,7 @@ class CreateGame extends React.Component {
       totalPlayers: '6'
     };
     this.setDate = this.setDate.bind(this);
-    submitGameForm = this.handleSubmit
+    submitGameForm = this.handleSubmit.bind(this)
   }
 
   setDate(newDate) {
@@ -665,10 +672,10 @@ class CreateGame extends React.Component {
     "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      players: [this.state.host],
+      players: [userObj.name],
       gameType: this.state.gameType,
       time: this.state.time,
-      host: this.state.host,
+      host: userObj.name,
       skillLevel: this.state.skillLevel,
       userId: user,
       totalPlayers: this.state.totalPlayers
@@ -704,16 +711,14 @@ class CreateGame extends React.Component {
       justifyContent: 'flex-start',
       backgroundColor: '#00264d'}}>
 
-        <View style={{flex: 1, borderWidth: 2, alignItems: 'center', borderColor: 'white'}}>
+        <View style={{flex: 1, borderWidth: 2, alignItems: 'center', borderColor: 'white', flexDirection: 'row'}}>
           {/* <DatePickerIOS
             mode="time"
             date={this.state.time}
             onDateChange={this.setDate}
           /> */}
-          <View>
-            <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Select Game Time</Text>
-          </View>
-          <Picker style={{height: 50, width: 100}} itemStyle = {{color: 'white', height: 44}}
+          <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20, position: 'absolute', top: 5, left: 10}}>Select Game Time</Text>
+          <Picker style={{height: 50, width: 100, position:'absolute', top:10, left:20}} itemStyle = {{color: 'white'}}
                   selectedValue={this.state.time}
                   onValueChange={(itemValue, itemIndex) => this.setState({time: itemValue})}>
             <Picker.Item label="12:00" value="12:00"/>
@@ -729,45 +734,24 @@ class CreateGame extends React.Component {
             <Picker.Item label="10:00" value="10:00" />
             <Picker.Item label="11:00" value="11:00" />
           </Picker>
-        </View>
-        <View style={{flex: 1, borderWidth: 2, borderBottom: 1, height: 20, alignItems: 'center', borderColor: 'white'}}>
-          <Text style = {{color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Game Type</Text>
-          {/* <View style={{flex: 1, flexDirection: "row", justifyContent: 'center', alignItems: 'center'}}>
-              <TouchableHighlight underlayColor="blue" label="1v1" value="1v1"><Text style={{fontSize: 15, margin: 10}}>1v1</Text></TouchableHighlight>
-              <TouchableHighlight underlayColor="blue" label="2v2" value="2v2"><Text style={{fontSize: 15, margin: 10}}>2v2</Text></TouchableHighlight>
-              <TouchableHighlight underlayColor="blue" label="3v3" value="3v3"><Text style={{fontSize: 15, margin: 10}}>3v3</Text></TouchableHighlight>
-              <TouchableHighlight underlayColor="blue" label="4v4" value="4v4"><Text style={{fontSize: 15, margin: 10}}>4v4</Text></TouchableHighlight>
-              <TouchableHighlight underlayColor="blue" label="5v5" value="5v5"><Text style={{fontSize: 15, margin: 10}}>5v5</Text></TouchableHighlight>
-           */}
 
-          <Picker style={{height: 50, width: 100}}
-                  itemStyle = {{color: 'white', height: 44}}
-                  selectedValue={this.state.gameType}
-                  onValueChange={(itemValue, itemIndex) => this.setState({gameType: itemValue})}>
-            <Picker.Item label="1v1" value="1v1" />
-            <Picker.Item label="3v3" value="3v3" />
-            <Picker.Item label="5v5" value="5v5" />
-          </Picker>
-        </View>
-        <View style={{flex: 1, borderWidth: 2, borderBottom: 1, height: 20, alignItems: 'center', borderColor: 'white'}}>
-          <Text style = {{color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Player Count</Text>
-          <Picker style={{height: 50, width: 100}}
-                  itemStyle = {{color: 'white', height: 44}}
-                  selectedValue={this.state.totalPlayers}
-                  onValueChange={(itemValue, itemIndex) => this.setState({totalPlayers: itemValue})}>
-            <Picker.Item label="2" value="2" />
-            <Picker.Item label="6" value="6" />
-            <Picker.Item label="10" value="10" />
-          </Picker>
-        </View>
-        <View style={{flex: 1, borderWidth: 2, alignItems: 'center', borderColor: 'white'}}>
-          <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: "center"}}>Skill Level</Text>
-          <View>
-            {/* <TouchableHighlight><Text>Rookie</Text></TouchableHighlight>
-            <TouchableHighlight><Text>Pro</Text></TouchableHighlight>
-            <TouchableHighlight><Text>H.o.F.</Text></TouchableHighlight> */}
+          <Text style = {{color: 'white', fontWeight: 'bold', fontSize: 20, position: 'absolute', top: 5, right: 10}}>Game Type</Text>
+          <View style={{position: 'absolute', right: 20, top: 10}}>
             <Picker style={{height: 50, width: 100}}
-                    itemStyle = {{color: 'white', height: 44}}
+                    itemStyle = {{color: 'white'}}
+                    selectedValue={this.state.gameType}
+                    onValueChange={(itemValue, itemIndex) => this.setState({gameType: itemValue})}>
+              <Picker.Item label="1v1" value="1v1" />
+              <Picker.Item label="3v3" value="3v3" />
+              <Picker.Item label="5v5" value="5v5" />
+            </Picker>
+        </View>
+        </View>
+        <View style={{flex: 1, borderWidth: 2, alignItems: 'center', borderColor: 'white', flexDirection: 'row'}}>
+          <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: "center", position: 'absolute', top: 5, left: 10}}>Skill Level</Text>
+          <View style={{flex: 2, position:'absolute', left:5, top:5}}>
+            <Picker style={{height: 50, width: 100}}
+                    itemStyle = {{color: 'white'}}
                     selectedValue={this.state.skillLevel}
                     onValueChange={(itemValue, itemIndex) => this.setState({skillLevel: itemValue})}>
               <Picker.Item label="Rookie" value="rookie" />
@@ -775,6 +759,20 @@ class CreateGame extends React.Component {
               <Picker.Item label="HoF" value="hof" />
             </Picker>
           </View>
+          <Text style = {{color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: 'center', position: 'absolute', top: 5, right: 10}}>Player Count</Text>
+            <View style={{position:'absolute', right:10, top:5}}>
+              <Picker style={{height: 50, width: 100}}
+                      itemStyle = {{color: 'white'}}
+                      selectedValue={this.state.totalPlayers}
+                      onValueChange={(itemValue, itemIndex) => this.setState({totalPlayers: itemValue})}>
+                <Picker.Item label="2" value="2" />
+                <Picker.Item label="6" value="6" />
+                <Picker.Item label="10" value="10" />
+              </Picker>
+          </View>
+        </View>
+        <View style={{flex:1, justifyContent: 'center', alignItems: 'center', borderWidth: 4, borderColor: 'white', borderRadius: 10}}>
+          <TouchableOpacity style={{borderWidth: 4, borderColor: 'white', borderRadius: 10, padding: 60}} onPress={(e) => this.handleSubmit(e)}><Text style={{fontSize: 30, color: 'white'}} >Submit</Text></TouchableOpacity>
         </View>
       </View>
     )
@@ -795,17 +793,17 @@ class Profile extends React.Component {
       method: 'GET',
       headers: {
       "Content-Type": "application/json"
-      }
+      },
       })
     .then((response) => response.json())
-    //maybe clear state here before new state is moved in
     .then((responseJson) => {
       console.log("Messages Response: ", responseJson)
       if (!responseJson.success) {
         alert('Did not successfully set state with user')
         console.log(responseJson, "1")
-      } else {
+      } else if (responseJson.success) {
         console.log(responseJson)
+        console.log('user', responseJson.player)
         this.setState({
           user: responseJson.player
         })
@@ -814,15 +812,19 @@ class Profile extends React.Component {
     .catch((err) => {
         console.log("Error fetching messages!", err)
     })
+    console.log(this.state.user)
   }
 
 
   render(){
+    console.log("state", this.state)
     return(
       <View style={{backgroundColor: '#f4511e'}}>
         <View style={{backgroundColor: '#00264d', borderWidth: 1, borderColor: '#f4511e', borderRadius: 10}}>
-          <Text>{this.state.user}</Text>
-          <Text></Text>
+          <Text>{this.state.user.name}</Text>
+          <Text>{this.state.user.age}</Text>
+          <Text>{this.state.user.skill}</Text>
+          <Text>{this.state.user.imgUrl}</Text>
         </View>
       </View>
     )
@@ -847,6 +849,9 @@ export default StackNavigator({
   },
   CreateScreen: {
     screen: CreateGame
+  },
+  ProfileScreen: {
+    screen: Profile
   }
 }, {initialRouteName: 'Login'});
 

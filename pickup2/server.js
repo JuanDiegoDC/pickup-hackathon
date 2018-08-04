@@ -27,6 +27,8 @@ mongoose.connection.on('error', function() {
 });
 mongoose.connect(process.env.MONGODB_URI);
 
+var userId;
+
 app.get('/ping', function (req, res) {
  return res.send('pong');
 });
@@ -34,6 +36,7 @@ app.get('/ping', function (req, res) {
 app.post('/create/user', function(req, res) {
   console.log("reached post request", req.body)
   if (req.body.username && req.body.password && req.body.age) {
+    console.log(userId)
     let newPlayer = Player({
       username: req.body.username,
       password: req.body.password,
@@ -63,6 +66,7 @@ app.post('/login', function(req, res) {
     if (err) {
       console.log("Error finding user")
     } else if (user) {
+      userId = user._id
       res.json({success: true, player: user})
     } else {
       res.json({success: false})
@@ -86,6 +90,7 @@ app.post("/create/game", (req, res) => {
     .then((user) => {
       console.log("user", user)
       if (req.body.gameType && req.body.time && req.body.host) {
+        console.log('reached creating new game', req.body)
         let newGame = Game({
           players: [user.name],
           gameType: req.body.gameType,
@@ -103,17 +108,20 @@ app.post("/create/game", (req, res) => {
             console.log("failed to save game", err)
           })
       } else {
-        console.log('something went wrong with adding player')
+        console.log('something went wrong with adding game')
       }
       res.json({"success": true})
     })
 });
 
 app.get('/profile', (req, res) => {
-  Player.findById(user, (user, err) => {
+  console.log('profile get request reached')
+  console.log("userid", userId)
+  Player.findById(userId, function(err, user) {
     if (err) {
       console.log("did not find user for profile", err)
     } else if (user) {
+      console.log("userfound!", user)
       res.json({
         success: true,
         player: user
