@@ -23,7 +23,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { MapView } from 'expo';
 // import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 // var mapStyle = require('./jsons/mapstyle.json');
-
+console.disableYellowBox = true;
 const DismissKeyboard = ({children}) => (
   <TouchableWithoutFeedback onPress = {() => Keyboard.dismiss()}>
     {children}
