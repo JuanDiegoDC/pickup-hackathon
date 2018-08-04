@@ -207,10 +207,10 @@ class RegisterScreen extends React.Component {
           />
         </View>
 
-        <View style={{backgroundColor: '#ff9933', borderRadius: 4, borderWidth: 0.5}}>
+        <View style={{backgroundColor: '#f4511e', borderRadius: 4, borderWidth: 0.5}}>
           <TouchableOpacity onPress={() => this.handleSubmit()}>
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
-              <Text style={{color: 'white', height: 40, width: 300, fontSize: 30, textAlign:'center'}}>Register!</Text>
+              <Text style={{color: 'white', height: 40, width: 300, fontSize: 30, textAlign:'center'}}>JUST DO IT</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -220,6 +220,18 @@ class RegisterScreen extends React.Component {
 }
 
 class Login extends React.Component {
+  static navigationOptions = (props) => ({
+    title: "REGISTER",
+    headerStyle: {
+      backgroundColor: '#f4511e'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold'
+    },
+    headerLeft: <TouchableOpacity onPress={() => {props.navigation.navigate('Login')}}><Text style={{marginLeft: 25, fontWeight: "bold"}}>LOGIN</Text></TouchableOpacity>
+  })
+
   constructor(props) {
     super(props);
     this.state = {
@@ -228,6 +240,7 @@ class Login extends React.Component {
       errMsg: ''
     }
   }
+
 
   redirect() {
     this.props.navigation.navigate('Map');
@@ -281,7 +294,7 @@ class Login extends React.Component {
         />
         <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
           <TextInput
-            style={{height: 40, width: 300, borderColor: 'white', borderWidth: 2, color: 'white'}}
+            style={{height: 40, width: 300, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
             placeholder="Username"
             placeholderTextColor='white'
             onChangeText={(text) => this.setState({username: text})}
@@ -290,7 +303,7 @@ class Login extends React.Component {
         </View>
         <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
           <TextInput
-            style={{height: 40, width: 300, borderColor: 'white', borderWidth: 2, color: 'white'}}
+            style={{height: 40, width: 300, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
             placeholder="Password"
             placeholderTextColor='white'
             secureTextEntry={true}
@@ -298,10 +311,10 @@ class Login extends React.Component {
             value = {this.state.password}
           />
         </View>
-        <View style={{backgroundColor: '#ff9933', borderRadius: 4, borderWidth: 0.5}}>
+        <View style={{backgroundColor: '#f4511e', borderRadius: 4, borderWidth: 0.5}}>
           <TouchableOpacity onPress={(e) => this.handleSubmit(e)}>
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
-              <Text style={{color: 'white', height: 40, width: 300, fontSize: 30, textAlign:'center'}}>Login</Text>
+              <Text style={{color: 'white', height: 40, width: 300, fontSize: 30, textAlign:'center'}}>GO!</Text>
             </View>
         </TouchableOpacity>
       </View>
