@@ -647,7 +647,7 @@ class CreateGame extends React.Component {
       totalPlayers: '6'
     };
     this.setDate = this.setDate.bind(this);
-    submitGameForm = this.handleSubmit.bind(this)
+    submitGameForm = this.handleSubmit
   }
 
   setDate(newDate) {
