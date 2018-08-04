@@ -324,6 +324,18 @@ class Login extends React.Component {
 }
 
 class MapScreen extends React.Component {
+  static navigationOptions = (props) => ({
+    title: "Pick your Court Young Blood",
+    headerStyle: {
+      backgroundColor: '#f4511e'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold'
+    },
+    headerLeft: null
+  })
+
   constructor(props) {
     super(props);
     this.state = {
@@ -333,10 +345,6 @@ class MapScreen extends React.Component {
       longDelta: .015
     }
   }
-
-  static navigationOptions = (props) => ({
-    title: "Pick your Court Young Blood",
-  })
 
   render() {
     return(
