@@ -784,7 +784,37 @@ class CreateGame extends React.Component {
 class Profile extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      user: {}
+    }
+  } //
+
+  componentDidMount() {
+    fetch('http://2aa7cc7e.ngrok.io/profile', {
+      method: 'GET',
+      headers: {
+      "Content-Type": "application/json"
+      }
+      })
+    .then((response) => response.json())
+    //maybe clear state here before new state is moved in
+    .then((responseJson) => {
+      console.log("Messages Response: ", responseJson)
+      if (!responseJson.success) {
+        alert('Did not successfully set state with user')
+        console.log(responseJson, "1")
+      } else {
+        console.log(responseJson)
+        this.setState({
+          user: responseJson.player
+        })
+      }
+    })
+    .catch((err) => {
+        console.log("Error fetching messages!", err)
+    })
   }
+
 
   render(){
     return(
