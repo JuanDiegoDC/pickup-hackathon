@@ -137,14 +137,14 @@ class RegisterScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Image
-          style={{width: 150, height: 150}}
+          style={{width: 150, height: 150, marginBottom: 20}}
           // source={{uri: 'http://www.nationalfanthem.com/ShirtPieces/Crying_Michael_Jordan_Meme_Sad_Chicago_Bulls_Fan--ZM--BLK.jpg'}}/>
             source={require('./mjtransparent.png')}
          />
 
         <View style={{height: 50}}>
           <TextInput
-            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
             placeholder="Enter your username"
             placeholderTextColor="white"
             onChangeText={(text) => this.setState({username: text})}
@@ -153,7 +153,7 @@ class RegisterScreen extends React.Component {
         </View>
         <View style={{height: 50}}>
           <TextInput
-            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
             placeholder="Enter a password"
             placeholderTextColor="white"
             secureTextEntry={true}
@@ -163,7 +163,7 @@ class RegisterScreen extends React.Component {
         </View>
         <View style={{height: 50}}>
           <TextInput
-            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
             placeholder="Enter your name"
             placeholderTextColor="white"
             onChangeText={(text) => this.setState({name: text})}
@@ -172,7 +172,7 @@ class RegisterScreen extends React.Component {
         </View>
         <View style={{height: 50}}>
           <TextInput
-            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
             placeholder="Enter your position"
             placeholderTextColor="white"
             onChangeText={(text) => this.setState({position: text})}
@@ -181,7 +181,7 @@ class RegisterScreen extends React.Component {
         </View>
         <View style={{height: 50}}>
           <TextInput
-            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
             placeholder="Enter your age"
             placeholderTextColor="white"
             onChangeText={(text) => this.setState({age: text})}
@@ -190,7 +190,7 @@ class RegisterScreen extends React.Component {
         </View>
         <View style={{height: 50}}>
           <TextInput
-            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
             placeholder="Enter your skill level"
             placeholderTextColor="white"
             onChangeText={(text) => this.setState({skill: text})}
@@ -199,7 +199,7 @@ class RegisterScreen extends React.Component {
         </View>
         <View style={{height: 50}}>
           <TextInput
-            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
             placeholder="Optional Image Url"
             placeholderTextColor="white"
             onChangeText={(text) => this.setState({imgUrl: text})}
