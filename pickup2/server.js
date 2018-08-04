@@ -56,11 +56,17 @@ app.post('/create/user', function(req, res) {
 });
 
 app.post('/login', function(req, res) {
-  // Player.findOne({username: req.body.username})
-  //   .then((user) => {
-  //
-  //   })
-  res.json({success: true})
+  console.log("reached login post", req.body)
+  Player.findOne({username: req.body.username}, function(err, user) {
+    if (err) {
+      console.log("Error finding user")
+    } else if (user) {
+      res.json({success: true})
+    } else {
+      res.json({success: false})
+    }
+  })
+
 });
 
 // DO NOT REMOVE THIS LINE :)

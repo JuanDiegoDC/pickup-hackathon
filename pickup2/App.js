@@ -31,30 +31,13 @@ class LoginScreen extends React.Component {
     this.props.navigation.navigate('Register');
   }
 
-  ping() {
-
-  }
-
   render() {
     return (
-      // <View style={styles.container}>
-      //   <Text style={[styles.textBig, styles.textColor]}>PICKUP</Text>
-      //   <TouchableOpacity onPress={ () => {this.press()} } style={[styles.button, styles.buttonGreen]}>
-      //     <Text style={styles.buttonLabel}>Tap to Login</Text>
-      //   </TouchableOpacity>
-      //   <TouchableOpacity style={[styles.button, styles.buttonBlue]} onPress={ () => {this.register()} }>
-      //     <Text style={styles.buttonLabel}>Tap to Register</Text>
-      //   </TouchableOpacity>
-      // </View>
       <View style={styles.container1}>
         <ImageBackground source={require('./assets/architecture.jpg')} style={styles.backgroundImage}>
           <View style={styles.content}>
             <Text style={styles.logo}>PICKUP!</Text>
             <View style={styles.inputContainer}>
-              {/* <TextInput underlineColor='transparent' style={styles.input} placeholder='username'>
-              </TextInput>
-              <TextInput secureTextEntry={true} underlineColor='transparent' style={styles.input} placeholder='password'>
-              </TextInput> */}
               <TouchableOpacity onPress={() => {this.press()} } style={styles.buttonContainer}>
                 <Text style={styles.buttonText}>LOGIN</Text>
               </TouchableOpacity>
@@ -93,7 +76,7 @@ class RegisterScreen extends React.Component {
   }
 
   handleSubmit() {
-    console.log("this state", this.state)
+    // console.log("this state", this.state)
       fetch('http://e9aa7b6a.ngrok.io/create/user', {
       method: 'POST',
       headers: {
@@ -235,37 +218,42 @@ class Login extends React.Component {
     this.props.navigation.navigate('Map');
   }
 
-  handleSubmit(event) {
-    event.preventDefault()
-      fetch('http://e9aa7b6a.ngrok.io/login', {
-      method: 'POST',
-      headers: {
-      "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password,
-      })
-      })
+  redirectLogin() {
+    this.props.navigation.navigate('LoginScreen');
+  }
+
+  handleSubmit() {
+    fetch('http:localhost:1337/login', {
+    method: 'POST',
+    headers: {
+    "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      username: this.state.username,
+      password: this.state.password,
+    })
+    })
     .then((response) => {
-      console.log("resonse from post ", response)
-      return response.json()
-      })
+    console.log("resonse from post ", response)
+    return response.json()
+    })
     .then((responseJson) => {
-      if (responseJson.success) {
-        console.log("Login Success!", responseJson)
-        this.setState({
-          username: '',
-          password: '',
-        })
-      } else {
-        alert(responseJson.error)
-      }
+      console.log("responseJson", responseJson)
+    if (responseJson.success) {
+      console.log("Login Success!", responseJson)
+      this.setState({
+        username: '',
+        password: '',
+      })
+      this.redirect()
+    } else {
+      alert("Not valid username/password!")
+      this.redirectLogin()
+    }
     })
     .catch((err) => {
-      console.log("Login Error! (Network)", err)
+    console.log("Login Error! (Network)", err)
     });
-    this.redirect()
   }
 
 
@@ -311,39 +299,22 @@ class MapScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lat: 37.802981,
-      long: -122.412146,
-      latDelta: .1,
-      longDelta: .05
+      lat: 37.77,
+      long: -122.401,
+      latDelta: .02,
+      longDelta: .015
     }
   }
+
+  static navigationOptions = (props) => ({
+    title: "Pick your Court Young Blood",
+  })
 
   render() {
     return(
       <View style={{
           flex: 1
         }}>
-        <View style={{flex: 1, flexDirection: 'row'}}>
-
-          <TouchableOpacity
-            style={{flex: 1,
-              borderWidth: 1,
-              alignItems: 'center',
-              justifyContent: 'center'}}
-              onPress={() => this.handleInstanbul()}>
-            <Text>Istanbul</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={{flex: 1,
-              borderWidth: 1,
-              alignItems: 'center',
-              justifyContent: 'center'}}
-              onPress={() => this.handleCurrent()}>
-            <Text>Here</Text>
-          </TouchableOpacity>
-
-        </View>
         <MapView style={{flex: 7}}
         region={{
           latitude: this.state.lat,
@@ -352,6 +323,29 @@ class MapScreen extends React.Component {
           longitudeDelta: this.state.longDelta
         }}
         />
+        <View style={{flex: 1, flexDirection: 'row'}}>
+
+          <TouchableOpacity
+            style={{flex: 1,
+              borderWidth: 1,
+              alignItems: 'center',
+              borderRadius: 4,
+              justifyContent: 'center'}}
+              onPress={() => this.handleInstanbul()}>
+            <Text>Join Game</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{flex: 1,
+              borderWidth: 1,
+              alignItems: 'center',
+              borderRadius: 4,
+              justifyContent: 'center'}}
+              onPress={() => this.handleCurrent()}>
+            <Text>Create Game</Text>
+          </TouchableOpacity>
+
+        </View>
       </View>
     )
   }
