@@ -18,11 +18,8 @@ import {
   Picker
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-// import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { MapView } from 'expo';
-// import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-// var mapStyle = require('./jsons/mapstyle.json');
 console.disableYellowBox = true;
 const DismissKeyboard = ({children}) => (
   <TouchableWithoutFeedback onPress = {() => Keyboard.dismiss()}>
@@ -191,6 +188,15 @@ class RegisterScreen extends React.Component {
         <View style={{height: 50}}>
           <TextInput
             style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
+            placeholder="Profile Picture"
+            placeholderTextColor="white"
+            onChangeText={(text) => this.setState({imgUrl: text})}
+            value = {this.state.imgUrl}
+          />
+        </View>
+        <View style={{height: 50}}>
+          <TextInput
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
             placeholder="Enter your position"
             placeholderTextColor="white"
             onChangeText={(text) => this.setState({position: text})}
@@ -215,15 +221,7 @@ class RegisterScreen extends React.Component {
             value = {this.state.skill}
           />
         </View>
-        <View style={{height: 50}}>
-          <TextInput
-            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
-            placeholder="Optional Image Url"
-            placeholderTextColor="white"
-            onChangeText={(text) => this.setState({imgUrl: text})}
-            value = {this.state.imgUrl}
-          />
-        </View>
+
 
         <View style={{backgroundColor: '#f4511e', borderRadius: 4, borderWidth: 0.5}}>
           <TouchableOpacity onPress={() => this.handleSubmit()}>
@@ -398,7 +396,7 @@ class MapScreen extends React.Component {
       { cancelable: false }
     )
   }
-// hellon
+
   render() {
     return(
       <View style={{
@@ -786,7 +784,7 @@ class CreateGame extends React.Component {
     )
   }
 }
-//position: 'aboslute', bottom: 120 please work now
+
 
 class Profile extends React.Component {
   constructor(props){
@@ -991,11 +989,3 @@ const styles = StyleSheet.create({
     margin: 30
   }
 });
-
-// {
-//   players: ["tim"],
-//     gameType: "3v3",
-//     time: "10:00",
-//     host: "tim",
-//     skillLevel: "Rookie,
-// }
