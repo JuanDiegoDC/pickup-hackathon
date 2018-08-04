@@ -13,7 +13,7 @@ import {
   Image,
   Button,
   ImageBackground
-} from 'react-native'; 
+} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 // import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -361,7 +361,7 @@ class MapScreen extends React.Component {
   }
 
   joinGame() {
-    alert('join game worked')
+    this.props.navigation.navigate('JoinScreen');
   }
 
   createGame() {
@@ -474,17 +474,67 @@ class MapScreen extends React.Component {
   }
 }
 
-// class JoinGame extends React.Component {
-//   constructor(props) {
-//     super(props);
-//   }
-//
-//   render() {
-//     return (
-//
-//     )
-//   }
-// }
+class JoinGame extends React.Component {
+  constructor(props) {
+    super(props);
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      dataSource: ds.cloneWithRows([
+        {
+        time: "10AM",
+        gameType: "3v3",
+        skillLevel: "Mad Skills",
+        numberPlayers: "5",
+        totalPlayers: "6",
+        host: 'juan'
+        }, {
+        time: "11AM",
+        gameType: "4v4",
+        skillLevel: "Sad Skills",
+        numberPlayers: "3",
+        totalPlayers: "8",
+        host: 'will'
+        }, {
+        time: "1PM",
+        gameType: "5v5",
+        skillLevel: "Sad Skills",
+        numberPlayers: "8",
+        totalPlayers: "10",
+        host: 'asheesh'
+        }
+      ])
+    }
+  }
+
+  // componentDidMount() {
+  //   //fetch game data from databse
+  // }
+
+  render() {
+    return (
+      <View>
+        <View>
+          <Text style={{textAlign: 'center'}}>TIME SLOTS</Text>
+        </View>
+        <ListView
+        renderRow={(game) => (
+          <View>
+            <TouchableOpacity>
+            <View>
+              <Text style={{textAlign: 'center'}}>
+                {game.time}
+                {game.gameType}
+              </Text>
+            </View>
+            </TouchableOpacity>
+          </View>
+        )}
+      dataSource={this.state.dataSource}
+      />
+      </View>
+    )
+  }
+}
 
 export default StackNavigator({
   Login: {
@@ -498,6 +548,9 @@ export default StackNavigator({
   },
   LoginScreen: {
     screen: Login
+  },
+  JoinScreen: {
+    screen: JoinGame
   }
 }, {initialRouteName: 'Login'});
 
