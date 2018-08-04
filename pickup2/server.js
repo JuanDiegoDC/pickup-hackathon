@@ -109,6 +109,19 @@ app.post("/create/game", (req, res) => {
     })
 });
 
+app.get('/profile', (req, res) => {
+  Player.findById(user, (user, err) => {
+    if (err) {
+      console.log("did not find user for profile", err)
+    } else if (user) {
+      res.json({
+        success: true,
+        player: user
+      })
+    }
+  })
+})
+
 // DO NOT REMOVE THIS LINE :)
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
