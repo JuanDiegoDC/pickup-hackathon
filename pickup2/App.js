@@ -340,23 +340,46 @@ class MapScreen extends React.Component {
         <MapView.Marker
           coordinate = {{latitude: 37.779, longitude: -122.4058}}
           title = {"Gene Friend Recreation Center"}>
+            <Image
+              style={{width: 50, height: 50}}
+              source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
+
+            />
         </MapView.Marker>
         <MapView.Marker
           coordinate = {{latitude: 37.777, longitude: -122.406}}
-          title = {"Victoria Manalo Draves Park"}
-        />
+          title = {"Victoria Manalo Draves Park"}>
+          <Image
+            style={{width: 50, height: 50}}
+            source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
+          />
+        </MapView.Marker>
         <MapView.Marker
           coordinate = {{latitude: 37.772, longitude: -122.398}}
-          title = {"Mission Creek Park Basketball Court"}
-        />
+          title = {"Mission Creek Park Basketball Court"}>
+          <Image
+            style={{width: 50, height: 50}}
+            source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
+          />
+        </MapView.Marker>
         <MapView.Marker
           coordinate = {{latitude: 37.771, longitude: -122.3985}}
           title = {"Mission Bay Park System"}
-        />
+          >
+          <Image
+            style={{width: 50, height: 50}}
+            source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
+          />
+        </MapView.Marker>
+
         <MapView.Marker
           coordinate = {{latitude: 37.773, longitude: -122.394}}
-          title = {"Mission Creek Park"}
-        />
+          title = {"Mission Creek Park"}>
+          <Image
+            style={{width: 50, height: 50}}
+            source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
+          />
+        </MapView.Marker>
       </MapView>
         <View style={{flex: 1, flexDirection: 'row'}}>
 
