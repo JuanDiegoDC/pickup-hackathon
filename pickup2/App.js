@@ -401,7 +401,6 @@ class MapScreen extends React.Component {
             <Image
               style={{width: 50, height: 50}}
               source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
-
             />
         </MapView.Marker>
         <MapView.Marker
