@@ -471,6 +471,10 @@ class MapScreen extends React.Component {
 }
 
 class JoinGame extends React.Component {
+  static navigationOptions = (props) => ({
+    title: 'Game Time!'
+  })
+
   constructor(props) {
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -482,21 +486,64 @@ class JoinGame extends React.Component {
         skillLevel: "Mad Skills",
         numberPlayers: "5",
         totalPlayers: "6",
-        host: 'juan'
+        host: 'juan',
+        imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
         }, {
         time: "11AM",
         gameType: "4v4",
         skillLevel: "Sad Skills",
         numberPlayers: "3",
         totalPlayers: "8",
-        host: 'will'
+        host: 'will',
+        imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
         }, {
         time: "1PM",
         gameType: "5v5",
         skillLevel: "Sad Skills",
         numberPlayers: "8",
         totalPlayers: "10",
-        host: 'asheesh'
+        host: 'asheesh',
+        imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
+        } , {
+        time: "1PM",
+        gameType: "5v5",
+        skillLevel: "Sad Skills",
+        numberPlayers: "8",
+        totalPlayers: "10",
+        host: 'asheesh',
+        imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
+        }, {
+        time: "1PM",
+        gameType: "5v5",
+        skillLevel: "Sad Skills",
+        numberPlayers: "8",
+        totalPlayers: "10",
+        host: 'asheesh',
+        imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
+        }, {
+        time: "1PM",
+        gameType: "5v5",
+        skillLevel: "Sad Skills",
+        numberPlayers: "8",
+        totalPlayers: "10",
+        host: 'asheesh',
+        imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
+        }, {
+        time: "1PM",
+        gameType: "5v5",
+        skillLevel: "Sad Skills",
+        numberPlayers: "8",
+        totalPlayers: "10",
+        host: 'asheesh',
+        imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
+        }, {
+        time: "1PM",
+        gameType: "5v5",
+        skillLevel: "Sad Skills",
+        numberPlayers: "8",
+        totalPlayers: "10",
+        host: 'asheesh',
+        imgUrl: 'http://i.imgur.com/yqtj8vi.jpg'
         }
       ])
     }
@@ -509,18 +556,27 @@ class JoinGame extends React.Component {
   render() {
     return (
       <View>
-        <View>
+        {/* <View>
           <Text style={{textAlign: 'center'}}>TIME SLOTS</Text>
-        </View>
+        </View> */}
         <ListView
         renderRow={(game) => (
-          <View>
+          <View style={{backgroundColor: '#00264d', borderWidth: 2, borderColor: 'white', borderRadius: 4, marginBottom: 5, height: 100}}>
             <TouchableOpacity>
-            <View>
-              <Text style={{textAlign: 'center'}}>
+            <View style={{display: 'flex', flexDirection: "row",
+                alignItems: 'center', justifyContent: 'space-between'}}>
+              <Text style={{paddingTop: 15, paddingLeft: 25, color: 'white'}}>
                 {game.time}
-                {game.gameType}
               </Text>
+              <Text style={{textAlign: 'center', paddingTop: 15, color: 'white'}}>
+                {game.gameType} {"\n"}
+                Skill Level: {game.skillLevel} {"\n"}
+                {game.numberPlayers} / {game.totalPlayers} Players
+              </Text>
+              <View style={{marginTop: 10, paddingRight: 20}}>
+                <Text style={{color: 'white'}}>Hosted By:</Text>
+                <Image style={{width: 66, height: 58}} source={{uri: (game.imgUrl)}}></Image>
+              </View>
             </View>
             </TouchableOpacity>
           </View>
