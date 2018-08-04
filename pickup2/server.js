@@ -89,7 +89,7 @@ app.post("/create/game", (req, res) => {
         let newGame = Game({
           players: [user.name],
           gameType: req.body.gameType,
-          time: new Date(req.body.time),
+          time: req.body.time,
           host: user.name,
           skillLevel: req.body.skillLevel,
           totalPlayers: req.body.totalPlayers,
