@@ -406,6 +406,7 @@ class MapScreen extends React.Component {
             <Image
               style={{width: 50, height: 50}}
               source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
+
             />
         </MapView.Marker>
         <MapView.Marker
@@ -536,15 +537,21 @@ class CreateGame extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chosenDate: new Date(),
-      gameType: ''
+      time: new Date(),
+      gameType: '',
+      players: [],
+      host: '',
+      skillLevel: '',
+      totalPlayers: ''
     };
     this.setDate = this.setDate.bind(this);
   }
 
   setDate(newDate) {
-    this.setState({chosenDate: newDate})
+    this.setState({time: newDate})
   }
+
+
 
   render() {
     return (
@@ -557,7 +564,7 @@ class CreateGame extends React.Component {
         <View style={{flex: 1}}>
           <DatePickerIOS
             mode="time"
-            date={this.state.chosenDate}
+            date={this.state.time}
             onDateChange={this.setDate}
           />
         </View>

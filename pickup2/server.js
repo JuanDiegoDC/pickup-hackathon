@@ -70,8 +70,27 @@ app.post('/login', function(req, res) {
 });
 
 app.post("/create", (req, res) => {
-  
-})
+  console.log('reached create game', req.body)
+  if (req.body.gameType && req.body.time && req.body.host) {
+    let newGame = Game({
+      players: [req.body.host],
+      gameType: req.body.gameType,
+      time: req.body.time,
+      host: this.body.host,
+      skillLevel: this.body.skillLevel
+    })
+    newGame.save()
+      .then((saved) => {
+        console.log("Game saved in database", saved)
+      })
+      .catch((err) => {
+        console.log("failed to save player")
+      })
+  } else {
+    console.log('something went wrong with adding player')
+  }
+  res.json({"success": true})
+});
 
 // DO NOT REMOVE THIS LINE :)
 app.get('/', function (req, res) {
