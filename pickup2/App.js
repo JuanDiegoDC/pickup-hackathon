@@ -1,5 +1,7 @@
 import React from 'react';
 import {
+  TouchableWithoutFeedback,
+  Keyboard,
   StyleSheet,
   View,
   Text,
@@ -14,8 +16,14 @@ import {
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 // import { Button } from 'react-native-elements';
-// import { Icon } from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { MapView } from 'expo';
+
+const DismissKeyboard = ({children}) => (
+  <TouchableWithoutFeedback onPress = {() => Keyboard.dismiss()}>
+    {children}
+  </TouchableWithoutFeedback>
+)
 
 class LoginScreen extends React.Component {
   static navigationOptions = (props) => ({
@@ -135,6 +143,7 @@ class RegisterScreen extends React.Component {
 
   render() {
     return (
+      <DismissKeyboard>
       <View style={styles.container}>
         <Image
           style={{width: 150, height: 150, marginBottom: 20}}
@@ -215,6 +224,7 @@ class RegisterScreen extends React.Component {
           </TouchableOpacity>
         </View>
       </View>
+    </DismissKeyboard>
     )
   }
 }
@@ -287,11 +297,13 @@ class Login extends React.Component {
 
   render() {
     return (
+      <DismissKeyboard>
       <View style={styles.container}>
         <Image
           style={{width: 150, height: 150, marginBottom: 20}}
           source={require('./mjtransparent.png')}
         />
+
         <View style={{ borderRadius: 4, borderWidth: 0.5, borderColor: 'black', width: 300, marginBottom: 10}}>
           <TextInput
             style={{height: 40, width: 300, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
@@ -311,6 +323,7 @@ class Login extends React.Component {
             value = {this.state.password}
           />
         </View>
+
         <View style={{backgroundColor: '#f4511e', borderRadius: 4, borderWidth: 0.5}}>
           <TouchableOpacity onPress={(e) => this.handleSubmit(e)}>
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
@@ -319,13 +332,14 @@ class Login extends React.Component {
         </TouchableOpacity>
       </View>
       </View>
+        </DismissKeyboard>
     )
   }
 }
 
 class MapScreen extends React.Component {
   static navigationOptions = (props) => ({
-    title: "Pick your Court Young Blood",
+    title: "Pick Your Court Young Blood",
     headerStyle: {
       backgroundColor: '#f4511e'
     },
@@ -430,26 +444,28 @@ class MapScreen extends React.Component {
           />
         </MapView.Marker>
       </MapView>
-        <View style={{flex: 1, flexDirection: 'row'}}>
+        <View style={{flex: 1, flexDirection: 'row', backgroundColor: '#f4511e'}}>
 
           <TouchableOpacity
-            style={{flex: 1,
-              borderWidth: 1,
+            style={{
+              flex: 1,
               alignItems: 'center',
               borderRadius: 4,
-              justifyContent: 'center'}}
+              justifyContent: 'center'
+            }}
               onPress={() => this.handleInstanbul()}>
-            <Text>Join Game</Text>
+            <Text style={{fontWeight: 'bold', color: "white"}}>{<Icon name="user" size={20}/>}{'  '}PROFILE</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={{flex: 1,
-              borderWidth: 1,
+            style={{
+              flex: 1,
               alignItems: 'center',
               borderRadius: 4,
-              justifyContent: 'center'}}
+              justifyContent: 'center'
+            }}
               onPress={() => this.handleCurrent()}>
-            <Text>Create Game</Text>
+            <Text style={{fontWeight: 'bold', color: "white"}}>GAMES{'  '}{<Icon name="trophy" size={20}/>}</Text>
           </TouchableOpacity>
 
         </View>
