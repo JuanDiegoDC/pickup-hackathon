@@ -336,8 +336,12 @@ class MapScreen extends React.Component {
           longitude: this.state.long,
           latitudeDelta: this.state.latDelta,
           longitudeDelta: this.state.longDelta
-        }}
+        }}>
+        <MapView.Marker
+          coordinate = {{latitude: 37.777, longitude: -122.406}}
+          title = {"Victoria Manalo Draves Park"}
         />
+      </MapView>
         <View style={{flex: 1, flexDirection: 'row'}}>
 
           <TouchableOpacity
