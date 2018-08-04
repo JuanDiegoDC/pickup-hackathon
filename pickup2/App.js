@@ -586,7 +586,7 @@ class JoinGame extends React.Component {
     })
     .catch((err) => {
         console.log("Error fetching messages!", err)
-      })
+    })
   }
 
   render() {
@@ -619,7 +619,7 @@ class JoinGame extends React.Component {
               </View>
             </View>
             </TouchableOpacity>
-          </View> 
+          </View>
         )}
       dataSource={this.state.dataSource}
       />
@@ -659,7 +659,8 @@ class CreateGame extends React.Component {
       time: this.state.time,
       host: this.state.host,
       skillLevel: this.state.skillLevel,
-      userId: user
+      userId: user,
+      totalPlayers: this.state.totalPlayers
     })
     })
   .then((response) => {
