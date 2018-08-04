@@ -351,8 +351,24 @@ class MapScreen extends React.Component {
           longitudeDelta: this.state.longDelta
         }}>
         <MapView.Marker
+          coordinate = {{latitude: 37.779, longitude: -122.4058}}
+          title = {"Gene Friend Recreation Center"}>
+        </MapView.Marker>
+        <MapView.Marker
           coordinate = {{latitude: 37.777, longitude: -122.406}}
           title = {"Victoria Manalo Draves Park"}
+        />
+        <MapView.Marker
+          coordinate = {{latitude: 37.772, longitude: -122.398}}
+          title = {"Mission Creek Park Basketball Court"}
+        />
+        <MapView.Marker
+          coordinate = {{latitude: 37.771, longitude: -122.3985}}
+          title = {"Mission Bay Park System"}
+        />
+        <MapView.Marker
+          coordinate = {{latitude: 37.773, longitude: -122.394}}
+          title = {"Mission Creek Park"}
         />
       </MapView>
         <View style={{flex: 1, flexDirection: 'row'}}>
