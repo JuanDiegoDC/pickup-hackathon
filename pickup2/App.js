@@ -586,7 +586,7 @@ class JoinGame extends React.Component {
     })
     .catch((err) => {
         console.log("Error fetching messages!", err)
-      })
+    })
   }
 
   render() {
@@ -665,7 +665,8 @@ class CreateGame extends React.Component {
       time: this.state.time,
       host: this.state.host,
       skillLevel: this.state.skillLevel,
-      userId: user
+      userId: user,
+      totalPlayers: this.state.totalPlayers
     })
     })
   .then((response) => {
@@ -775,6 +776,22 @@ class CreateGame extends React.Component {
   }
 }
 //position: 'aboslute', bottom: 120
+
+class Profile extends React.Component {
+  constructor(props){
+    super(props);
+  }
+
+  render(){
+    return(
+      <View style={{backgroundColor: '#f4511e'}}>
+        <View style={{backgroundColor: '#00264d', borderWidth: 1, borderColor: '#f4511e', borderRadius: 10}>
+          <Text style={{}}>{this.state.user}</Text>
+        </View>
+      </View>
+    )
+  }
+}
 
 export default StackNavigator({
   Login: {
