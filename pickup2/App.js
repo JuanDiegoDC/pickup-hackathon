@@ -816,15 +816,23 @@ class Profile extends React.Component {
   }
 
 
+
   render(){
     console.log("state", this.state)
+    let imgUrl = this.state.user.imgUrl;
     return(
       <View style={{backgroundColor: '#f4511e'}}>
-        <View style={{backgroundColor: '#00264d', borderWidth: 1, borderColor: '#f4511e', borderRadius: 10}}>
-          <Text>{this.state.user.name}</Text>
-          <Text>{this.state.user.age}</Text>
-          <Text>{this.state.user.skill}</Text>
-          <Text>{this.state.user.imgUrl}</Text>
+        <View style={{backgroundColor: '#00264d', borderWidth: 1, borderColor: '#f4511e', borderRadius: 10, height: 1000}}>
+          <Image style={{height: 200, width: 200, borderRadius: 100, borderWidth: 5, borderColor: "white", position: "absolute", right: 90, top: 30}} source={{uri:imgUrl}}/>
+          <View style={{borderWidth: 5, borderColor: '#f4511e', borderRadius: 10, height: 300, absolute: "position", top: 250}}>
+            <Text style={{color: "white", fontWeight: "bold", fontSize: 30, textAlign: 'center', marginLeft: 10, marginRight: 10}}>
+              {'\n'}{'\n'}
+              Username: {this.state.user.name}{'\n'}{'\n'}
+              Age: {this.state.user.age}{'\n'}{'\n'}
+              Skill Level: {this.state.user.skill}
+              {'\n'}{'\n'}
+            </Text>
+          </View>
         </View>
       </View>
     )
