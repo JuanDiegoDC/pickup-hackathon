@@ -768,8 +768,9 @@ class Profile extends React.Component {
   render(){
     return(
       <View style={{backgroundColor: '#f4511e'}}>
-        <View style={{backgroundColor: '#00264d', borderWidth: 1, borderColor: '#f4511e', borderRadius: 10}>
-          <Text style={{}}>{this.state.user}</Text>
+        <View style={{backgroundColor: '#00264d', borderWidth: 1, borderColor: '#f4511e', borderRadius: 10}}>
+          <Text>{this.state.user}</Text>
+          <Text></Text>
         </View>
       </View>
     )
