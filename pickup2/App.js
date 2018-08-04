@@ -779,7 +779,7 @@ class CreateGame extends React.Component {
     )
   }
 }
-//position: 'aboslute', bottom: 120
+//position: 'aboslute', bottom: 120 please work now
 
 class Profile extends React.Component {
   constructor(props){
