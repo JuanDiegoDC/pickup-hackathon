@@ -19,8 +19,15 @@ import { MapView } from 'expo';
 
 class LoginScreen extends React.Component {
   static navigationOptions = (props) => ({
-    title: 'Login',
-    headerRight: <TouchableOpacity onPress={() => {props.navigation.navigate('Register')}}><Text>Register</Text></TouchableOpacity>
+    title: 'LOGIN',
+    headerStyle: {
+      backgroundColor: '#f4511e'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold'
+    },
+    headerRight: <TouchableOpacity onPress={() => {props.navigation.navigate('Register')}}><Text style={{marginRight: 25, fontWeight: "bold"}}>REGISTER</Text></TouchableOpacity>
   });
 
   press() {
@@ -37,6 +44,7 @@ class LoginScreen extends React.Component {
         <ImageBackground source={require('./assets/architecture.jpg')} style={styles.backgroundImage}>
           <View style={styles.content}>
             <Text style={styles.logo}>PICKUP!</Text>
+            <View style={styles.emptySpace}></View>
             <View style={styles.inputContainer}>
               <TouchableOpacity onPress={() => {this.press()} } style={styles.buttonContainer}>
                 <Text style={styles.buttonText}>LOGIN</Text>
@@ -67,8 +75,15 @@ class RegisterScreen extends React.Component {
   }
 
   static navigationOptions = (props) => ({
-    title: "Register",
-    headerLeft: <TouchableOpacity onPress={() => {props.navigation.navigate('Login')}}><Text>Login</Text></TouchableOpacity>
+    title: "REGISTER",
+    headerStyle: {
+      backgroundColor: '#f4511e'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold'
+    },
+    headerLeft: <TouchableOpacity onPress={() => {props.navigation.navigate('Login')}}><Text style={{marginLeft: 25, fontWeight: "bold"}}>LOGIN</Text></TouchableOpacity>
   })
 
   login() {
@@ -122,15 +137,15 @@ class RegisterScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Image
-          style={{width: 150, height: 150}}
+          style={{width: 150, height: 150, marginBottom: 20}}
           // source={{uri: 'http://www.nationalfanthem.com/ShirtPieces/Crying_Michael_Jordan_Meme_Sad_Chicago_Bulls_Fan--ZM--BLK.jpg'}}/>
             source={require('./mjtransparent.png')}
          />
 
         <View style={{height: 50}}>
           <TextInput
-            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
-            placeholder= "Enter your username"
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
+            placeholder="Enter your username"
             placeholderTextColor="white"
             onChangeText={(text) => this.setState({username: text})}
             value={this.state.username}
@@ -138,7 +153,7 @@ class RegisterScreen extends React.Component {
         </View>
         <View style={{height: 50}}>
           <TextInput
-            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
             placeholder="Enter a password"
             placeholderTextColor="white"
             secureTextEntry={true}
@@ -148,7 +163,7 @@ class RegisterScreen extends React.Component {
         </View>
         <View style={{height: 50}}>
           <TextInput
-            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
             placeholder="Enter your name"
             placeholderTextColor="white"
             onChangeText={(text) => this.setState({name: text})}
@@ -157,7 +172,7 @@ class RegisterScreen extends React.Component {
         </View>
         <View style={{height: 50}}>
           <TextInput
-            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
             placeholder="Enter your position"
             placeholderTextColor="white"
             onChangeText={(text) => this.setState({position: text})}
@@ -166,7 +181,7 @@ class RegisterScreen extends React.Component {
         </View>
         <View style={{height: 50}}>
           <TextInput
-            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
             placeholder="Enter your age"
             placeholderTextColor="white"
             onChangeText={(text) => this.setState({age: text})}
@@ -175,7 +190,7 @@ class RegisterScreen extends React.Component {
         </View>
         <View style={{height: 50}}>
           <TextInput
-            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
             placeholder="Enter your skill level"
             placeholderTextColor="white"
             onChangeText={(text) => this.setState({skill: text})}
@@ -184,7 +199,7 @@ class RegisterScreen extends React.Component {
         </View>
         <View style={{height: 50}}>
           <TextInput
-            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
+            style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white', padding: 10}}
             placeholder="Optional Image Url"
             placeholderTextColor="white"
             onChangeText={(text) => this.setState({imgUrl: text})}
@@ -441,7 +456,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   content: {
-    alignItems: 'center'
+    alignItems: 'center',
   },
   logo: {
     color: 'white',
@@ -461,14 +476,8 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     borderWidth: 1,
     borderColor: '#fff',
-    backgroundColor: 'rgba(255,255,255,0.2)'
-  },
-  input: {
-    fontSize: 16,
-    height: 40,
-    padding: 10,
-    marginBottom: 10,
-    backgroundColor: 'rgba(255,255,255,1)'
+    backgroundColor: 'rgba(255,255,255,0.7)',
+    borderRadius: 10
   },
   buttonContainer: {
     alignSelf: 'stretch',
@@ -477,7 +486,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     borderWidth: 1,
     borderColor: '#fff',
-    backgroundColor: 'rgba(255,255,255,0.6)'
+    backgroundColor: 'rgba(255,255,255,0.85)',
+    borderRadius: 10
   },
   buttonText: {
     fontSize: 16,
@@ -486,5 +496,8 @@ const styles = StyleSheet.create({
   },
   container1: {
     flex: 1
+  },
+  emptySpace: {
+    margin: 30
   }
 });
