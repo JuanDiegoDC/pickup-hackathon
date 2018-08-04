@@ -81,7 +81,7 @@ app.post("/create", (req, res) => {
     })
     newGame.save()
       .then((saved) => {
-        console.log("Player saved in database", saved)
+        console.log("Game saved in database", saved)
       })
       .catch((err) => {
         console.log("failed to save player")

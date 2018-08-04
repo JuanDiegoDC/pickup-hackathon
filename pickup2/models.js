@@ -22,7 +22,8 @@ let GameSchema = new Schema({
   gameType: String,
   time: Date,
   host: String,
-  skillLevel: String
+  skillLevel: String,
+  totalPlayers: String
 })
 
 let Game = mongoose.model("Game", GameSchema);
