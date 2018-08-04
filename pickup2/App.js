@@ -346,6 +346,28 @@ class MapScreen extends React.Component {
     }
   }
 
+  joinGame() {
+    alert('join game worked')
+  }
+
+  createGame() {
+    alert('create game worked')
+  }
+
+  displayCreateGame(e) {
+    console.log(e.nativeEvent)
+    e.preventDefault()
+    Alert.alert(
+      'Join or Create a Game',
+      'BBB you already know',
+      [
+        {text: 'Create Game', onPress: () => this.createGame()},
+        {text: 'Join Game', onPress: () => this.joinGame()},
+      ],
+      { cancelable: false }
+    )
+  }
+
   render() {
     return(
       <View style={{
@@ -377,11 +399,17 @@ class MapScreen extends React.Component {
         </MapView.Marker>
         <MapView.Marker
           coordinate = {{latitude: 37.772, longitude: -122.398}}
-          title = {"Mission Creek Park Basketball Court"}>
+          title = {"Mission Creek Park Basketball Court"}
+          onSelect={(e)=>this.displayCreateGame(e)}>
           <Image
             style={{width: 50, height: 50}}
             source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
           />
+          {/* <MapView.Callout tooltip={true} style={{width: 10}}>
+            <TouchableOpacity  underlayColor='#dddddd'>
+
+            </TouchableOpacity>
+          </MapView.Callout> */}
         </MapView.Marker>
         <MapView.Marker
           coordinate = {{latitude: 37.771, longitude: -122.3985}}
@@ -428,9 +456,19 @@ class MapScreen extends React.Component {
       </View>
     )
   }
-
 }
 
+// class JoinGame extends React.Component {
+//   constructor(props) {
+//     super(props);
+//   }
+//
+//   render() {
+//     return (
+//
+//     )
+//   }
+// }
 
 export default StackNavigator({
   Login: {
