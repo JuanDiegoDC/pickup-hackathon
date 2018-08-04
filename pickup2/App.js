@@ -736,7 +736,7 @@ class Profile extends React.Component {
     this.state = {
       user: {}
     }
-  } //
+  } 
 
   componentDidMount() {
     fetch('http://2aa7cc7e.ngrok.io/profile', {
