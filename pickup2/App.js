@@ -130,7 +130,7 @@ class RegisterScreen extends React.Component {
         <View style={{height: 50}}>
           <TextInput
             style = {{width: 300, height: 40, borderColor: 'white', borderWidth: 2, color: 'white'}}
-            placeholder= "Enter your username"
+            placeholder="Enter your username"
             placeholderTextColor="white"
             onChangeText={(text) => this.setState({username: text})}
             value={this.state.username}
