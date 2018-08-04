@@ -12,7 +12,8 @@ import {
   AppRegistry,
   Image,
   Button,
-  ImageBackground
+  ImageBackground,
+  DatePickerIOS
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 // import { Button } from 'react-native-elements';
@@ -100,7 +101,7 @@ class RegisterScreen extends React.Component {
 
   handleSubmit() {
     // console.log("this state", this.state)
-      fetch('http://e9aa7b6a.ngrok.io/create/user', {
+      fetch('http://2aa7cc7e.ngrok.io/create/user', {
       method: 'POST',
       headers: {
       "Content-Type": "application/json"
@@ -261,7 +262,7 @@ class Login extends React.Component {
   }
 
   handleSubmit() {
-    fetch('http://e9aa7b6a.ngrok.io/login', {
+    fetch('http://2aa7cc7e.ngrok.io/login', {
     method: 'POST',
     headers: {
     "Content-Type": "application/json"
@@ -365,7 +366,7 @@ class MapScreen extends React.Component {
   }
 
   createGame() {
-    alert('create game worked')
+    this.props.navigation.navigate('CreateScreen');
   }
 
   displayCreateGame(e) {
@@ -527,6 +528,30 @@ class JoinGame extends React.Component {
   }
 }
 
+class CreateGame extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { chosenDate: new Date() };
+    this.setDate = this.setDate.bind(this);
+  }
+
+  setDate(newDate) {
+    this.setState({chosenDate: newDate})
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <DatePickerIOS
+          date={this.state.chosenDate}
+          onDateChange={this.setDate}
+        />
+      </View>
+    )
+  }
+}
+
+
 export default StackNavigator({
   Login: {
     screen: LoginScreen,
@@ -542,6 +567,9 @@ export default StackNavigator({
   },
   JoinScreen: {
     screen: JoinGame
+  },
+  CreateScreen: {
+    screen: CreateGame
   }
 }, {initialRouteName: 'Login'});
 
