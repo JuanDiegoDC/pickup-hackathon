@@ -384,7 +384,7 @@ class MapScreen extends React.Component {
       { cancelable: false }
     )
   }
-
+// hellon
   render() {
     return(
       <View style={{
@@ -399,8 +399,7 @@ class MapScreen extends React.Component {
         }}>
         <MapView.Marker
           coordinate = {{latitude: 37.779, longitude: -122.4058}}
-          title = {"Gene Friend Recreation Center"}
-          onSelect={(e)=>this.displayCreateGame(e)}>
+          title = {"Gene Friend Recreation Center"}>
             <Image
               style={{width: 50, height: 50}}
               source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
@@ -409,8 +408,7 @@ class MapScreen extends React.Component {
         </MapView.Marker>
         <MapView.Marker
           coordinate = {{latitude: 37.777, longitude: -122.406}}
-          title = {"Victoria Manalo Draves Park"}
-          onSelect={(e)=>this.displayCreateGame(e)}>
+          title = {"Victoria Manalo Draves Park"}>
           <Image
             style={{width: 50, height: 50}}
             source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
@@ -431,19 +429,9 @@ class MapScreen extends React.Component {
           </MapView.Callout> */}
         </MapView.Marker>
         <MapView.Marker
-          coordinate = {{latitude: 37.771, longitude: -122.3985}}
-          title = {"Mission Bay Park System"}
-          onSelect={(e)=>this.displayCreateGame(e)}>
-          <Image
-            style={{width: 50, height: 50}}
-            source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
-          />
-        </MapView.Marker>
-
-        <MapView.Marker
-          coordinate = {{latitude: 37.773, longitude: -122.394}}
-          title = {"Mission Creek Park"}
-          onSelect={(e)=>this.displayCreateGame(e)}>
+          coordinate = {{latitude: 37.773, longitude: -122.3936}}
+          title = {"Mission Creek Park Pavilion"}
+          >
           <Image
             style={{width: 50, height: 50}}
             source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
@@ -522,7 +510,7 @@ class JoinGame extends React.Component {
         <View>
           <Text style={{textAlign: 'center'}}>TIME SLOTS</Text>
         </View>
-        <ListView style={{width: 100}}
+        <ListView
         renderRow={(game) => (
           <View>
             <TouchableOpacity>
@@ -623,6 +611,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#00264d'
+  },
+  containerJoinGames: {
+    flex: 1,
+    padding: 8,
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   buttonsContainer: {
     flexDirection: 'row',
