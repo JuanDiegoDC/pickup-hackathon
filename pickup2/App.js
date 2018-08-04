@@ -30,6 +30,8 @@ const DismissKeyboard = ({children}) => (
   </TouchableWithoutFeedback>
 )
 
+var user;
+
 class LoginScreen extends React.Component {
   static navigationOptions = (props) => ({
     title: 'LOGIN',
@@ -288,6 +290,8 @@ class Login extends React.Component {
         username: '',
         password: '',
       })
+      user = responseJson.player._id
+      console.log("user id saved in global", user)
       this.redirect()
     } else {
       alert("Not valid username/password!")
@@ -477,7 +481,7 @@ class JoinGame extends React.Component {
 
   constructor(props) {
     super(props);
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows([
         {
@@ -549,9 +553,33 @@ class JoinGame extends React.Component {
     }
   }
 
-  // componentDidMount() {
-  //   //fetch game data from databse
-  // }
+  componentDidMount() {
+    fetch('http://2aa7cc7e.ngrok.io/login', {
+      method: 'GET',
+      headers: {
+      "Content-Type": "application/json"
+      }
+      })
+    .then((response) => response.json())
+    //maybe clear state here before new state is moved in
+    .then((responseJson) => {
+      console.log("Messages Response: ", responseJson)
+      if (!responseJson.success) {
+        alert('Did not successfully set state with messages')
+        console.log(responseJson, "1")
+      } else {
+        console.log(responseJson)
+        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        let yeet = ds.cloneWithRows(responseJson.games)
+        this.setState({
+          dataSource: yeet
+        })
+      }
+    })
+    .catch((err) => {
+        console.log("Error fetching messages!", err)
+      })
+  }
 
   render() {
     return (
@@ -561,7 +589,7 @@ class JoinGame extends React.Component {
         </View> */}
         <ListView
         renderRow={(game) => (
-          <View style={{backgroundColor: '#00264d', borderWidth: 2, borderColor: 'white', borderRadius: 4, marginBottom: 5, height: 100}}>
+          <View style={{backgroundColor: '#00264d', borderWidth: 2, borderColor: 'white', borderRadius: 0.5, marginBottom: 5, height: 100}}>
             <TouchableOpacity>
             <View style={{display: 'flex', flexDirection: "row",
                 alignItems: 'center', justifyContent: 'space-between'}}>
@@ -606,7 +634,45 @@ class CreateGame extends React.Component {
     this.setState({time: newDate})
   }
 
-
+  handleSubmit(e) {
+    e.preventDefault()
+    fetch('http://2aa7cc7e.ngrok.io/create/game', {
+    method: 'POST',
+    headers: {
+    "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      players: [this.state.host],
+      gameType: this.state.gameType,
+      time: this.state.time,
+      host: this.state.host,
+      skillLevel: this.state.skillLevel,
+      userId: user
+    })
+    })
+  .then((response) => {
+    console.log("resonse from post ", response)
+    return response.json()
+    })
+  .then((responseJson) => {
+    if (responseJson.success) {
+      console.log("Game Created Success!", responseJson)
+      this.setState({
+        players: '',
+        gameType: '',
+        time: '',
+        host: '',
+        skillLevel: '',
+      })
+    } else {
+      alert(responseJson.error)
+    }
+  })
+  .catch((err) => {
+    console.log("Game Creation Error! (Network)", err)
+  });
+  this.redirectMap()
+}
 
   render() {
     return (

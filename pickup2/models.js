@@ -23,7 +23,8 @@ let GameSchema = new Schema({
   time: Date,
   host: String,
   skillLevel: String,
-  totalPlayers: String
+  totalPlayers: String,
+  imgUrl: String
 })
 
 let Game = mongoose.model("Game", GameSchema);
