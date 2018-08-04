@@ -20,7 +20,8 @@ import {
 import { StackNavigator } from 'react-navigation';
 // import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { MapView } from 'expo';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+var mapStyle = require('./jsons/mapstyle.json');
 
 const DismissKeyboard = ({children}) => (
   <TouchableWithoutFeedback onPress = {() => Keyboard.dismiss()}>
@@ -390,7 +391,9 @@ class MapScreen extends React.Component {
       <View style={{
           flex: 1
         }}>
-        <MapView style={{flex: 7}}
+        <MapView customMapStyle={mapStyle}
+        provider={PROVIDER_GOOGLE}
+        style={{flex: 7}}
         region={{
           latitude: this.state.lat,
           longitude: this.state.long,
