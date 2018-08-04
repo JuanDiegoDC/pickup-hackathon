@@ -20,8 +20,9 @@ import {
 import { StackNavigator } from 'react-navigation';
 // import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-var mapStyle = require('./jsons/mapstyle.json');
+import { MapView } from 'expo';
+// import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+// var mapStyle = require('./jsons/mapstyle.json');
 
 const DismissKeyboard = ({children}) => (
   <TouchableWithoutFeedback onPress = {() => Keyboard.dismiss()}>
@@ -391,8 +392,7 @@ class MapScreen extends React.Component {
       <View style={{
           flex: 1
         }}>
-        <MapView customMapStyle={mapStyle}
-        provider={PROVIDER_GOOGLE}
+        <MapView
         style={{flex: 7}}
         region={{
           latitude: this.state.lat,
@@ -408,7 +408,6 @@ class MapScreen extends React.Component {
             <Image
               style={{width: 50, height: 50}}
               source={{uri: "https://images.vexels.com/media/users/3/135385/isolated/preview/212a5985af3fc8329ada7bc2a45bad82-basketball-circle-icon-by-vexels.png"}}
-
             />
         </MapView.Marker>
         <MapView.Marker
@@ -551,48 +550,6 @@ class CreateGame extends React.Component {
     this.setState({time: newDate})
   }
 
-  redirectMap() {
-    this.props.navigation.navigate('Map');
-  }
-
-  handleSubmit(e) {
-    e.preventDefault()
-    fetch('http://2aa7cc7e.ngrok.io/create/game', {
-    method: 'POST',
-    headers: {
-    "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      players: [this.state.host],
-      gameType: this.state.gameType,
-      time: this.state.time,
-      host: this.state.host,
-      skillLevel: this.state.skillLevel,
-    })
-    })
-  .then((response) => {
-    console.log("resonse from post ", response)
-    return response.json()
-    })
-  .then((responseJson) => {
-    if (responseJson.success) {
-      console.log("Game Created Success!", responseJson)
-      this.setState({
-        players: '',
-        gameType: '',
-        time: '',
-        host: '',
-        skillLevel: '',
-      })
-    } else {
-      alert(responseJson.error)
-    }
-  })
-  .catch((err) => {
-    console.log("Game Creation Error! (Network)", err)
-  });
-  this.redirectMap()
-}
 
 
   render() {
