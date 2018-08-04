@@ -31,6 +31,7 @@ const DismissKeyboard = ({children}) => (
 )
 
 var user;
+var submitGameForm;
 
 class LoginScreen extends React.Component {
   static navigationOptions = (props) => ({
@@ -631,7 +632,7 @@ class JoinGame extends React.Component {
 class CreateGame extends React.Component {
   static navigationOptions = (props) => ({
     title: 'Ready to Ball?',
-    headerRight: <TouchableOpacity onPress = {(event) => {this.handleSubmit(event)}}><Text>Create Game</Text></TouchableOpacity>
+    headerRight: {<TouchableOpacity onPress = {(event) => submitGameForm(event)}><Text>Create Game</Text></TouchableOpacity>}
   })
 
   constructor(props) {
@@ -645,6 +646,7 @@ class CreateGame extends React.Component {
       totalPlayers: '6'
     };
     this.setDate = this.setDate.bind(this);
+    submitGameForm = this.handleSubmit.bind(this)
   }
 
   setDate(newDate) {
