@@ -632,7 +632,7 @@ class JoinGame extends React.Component {
 class CreateGame extends React.Component {
   static navigationOptions = (props) => ({
     title: 'Ready to Ball?',
-    headerRight: {<TouchableOpacity onPress = {(event) => submitGameForm(event)}><Text>Create Game</Text></TouchableOpacity>}
+    headerRight: {<TouchableOpacity onPress = {(event) => {submitGameForm(event)}}><Text>Create Game</Text></TouchableOpacity>}
   })
 
   constructor(props) {
