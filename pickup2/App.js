@@ -382,7 +382,7 @@ class MapScreen extends React.Component {
       { cancelable: false }
     )
   }
-// hellon 
+// hellon
   render() {
     return(
       <View style={{
@@ -427,8 +427,8 @@ class MapScreen extends React.Component {
           </MapView.Callout> */}
         </MapView.Marker>
         <MapView.Marker
-          coordinate = {{latitude: 37.771, longitude: -122.3985}}
-          title = {"Mission Bay Park System"}
+          coordinate = {{latitude: 37.773, longitude: -122.3936}}
+          title = {"Mission Creek Park Pavilion"}
           >
           <Image
             style={{width: 50, height: 50}}
@@ -508,7 +508,7 @@ class JoinGame extends React.Component {
         <View>
           <Text style={{textAlign: 'center'}}>TIME SLOTS</Text>
         </View>
-        <ListView style={styles.containerJoinGames}
+        <ListView
         renderRow={(game) => (
           <View>
             <TouchableOpacity>
