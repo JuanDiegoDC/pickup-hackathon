@@ -619,7 +619,7 @@ class JoinGame extends React.Component {
               </View>
             </View>
             </TouchableOpacity>
-          </View> 
+          </View>
         )}
       dataSource={this.state.dataSource}
       />
@@ -724,6 +724,22 @@ class CreateGame extends React.Component {
   }
 }
 //position: 'aboslute', bottom: 120
+
+class Profile extends React.Component {
+  constructor(props){
+    super(props);
+  }
+
+  render(){
+    return(
+      <View style={{backgroundColor: '#f4511e'}}>
+        <View style={{backgroundColor: '#00264d', borderWidth: 1, borderColor: '#f4511e', borderRadius: 10}>
+        <Te></>
+        </View>
+      </View>
+    )
+  }
+}
 
 export default StackNavigator({
   Login: {
